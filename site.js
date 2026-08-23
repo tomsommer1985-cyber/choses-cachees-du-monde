@@ -34,3 +34,35 @@
   if (cls.indexOf('lang-en') !== -1) current = 'en';
   apply(current);
 })();
+
+/* Auto-hiding header: on narrow screens the nav slides away while the reader
+   scrolls down and comes back as soon as they scroll up. */
+(function () {
+  var nav = document.querySelector('nav');
+  if (!nav) return;
+
+  var last = window.pageYOffset || 0;
+  var ticking = false;
+  var THRESHOLD = 6;   // ignore sub-pixel jitter
+  var TOP_ZONE = 90;   // always visible near the top of the page
+
+  function update() {
+    ticking = false;
+    var y = window.pageYOffset || 0;
+    if (y <= TOP_ZONE) {
+      nav.classList.remove('hide');
+    } else if (y > last + THRESHOLD) {
+      nav.classList.add('hide');
+    } else if (y < last - THRESHOLD) {
+      nav.classList.remove('hide');
+    }
+    last = y;
+  }
+
+  window.addEventListener('scroll', function () {
+    if (!ticking) { window.requestAnimationFrame(update); ticking = true; }
+  }, { passive: true });
+
+  // A keyboard user tabbing into a hidden link must be able to see it.
+  nav.addEventListener('focusin', function () { nav.classList.remove('hide'); });
+})();

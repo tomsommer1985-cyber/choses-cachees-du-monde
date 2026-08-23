@@ -238,3 +238,12 @@ a.card p{margin:0;font-size:.9rem;color:var(--ink-soft)}
   nav{padding:.5rem .9rem}
   nav .links{gap:.6rem;font-size:.72rem}
 }
+
+/* ---- auto-hiding header on mobile ---- */
+@media(max-width:640px){
+  nav{transition:transform .25s ease}
+  nav.hide{transform:translateY(-100%)}
+}
+@media(prefers-reduced-motion:reduce){
+  nav{transition:none}
+}
