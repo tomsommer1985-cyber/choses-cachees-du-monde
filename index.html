@@ -1,204 +1,37 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="lang-fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Les choses cachées du monde · Things Hidden from the World</title>
 <meta name="description" content="Une introduction pédagogique aux structures financières et géopolitiques qui façonnent le monde. A pedagogical introduction to the financial and geopolitical structures shaping world affairs.">
-<style>
-  :root{
-    --ink:#23201c;
-    --ink-soft:#4d463d;
-    --paper:#f7f3ea;
-    --paper-deep:#efe8da;
-    --card:#fffdf8;
-    --accent:#7a2e2e;
-    --accent-soft:#a05555;
-    --gold:#a8842c;
-    --line:#d8cfbd;
-    --fact:#2e6b45;
-    --interp:#a8842c;
-    --debate:#9c4a1f;
-    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
-    --sans:"Avenir Next",Avenir,"Segoe UI",Helvetica,Arial,sans-serif;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{
-    font-family:var(--serif);
-    background:var(--paper);
-    color:var(--ink);
-    line-height:1.65;
-    font-size:17px;
-  }
-  /* ---- language switching ---- */
-  body.lang-fr .en{display:none !important}
-  body.lang-en .fr{display:none !important}
-
-  a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(122,46,46,.3)}
-  a:hover{border-bottom-color:var(--accent)}
-
-  /* ---- nav ---- */
-  nav{
-    position:sticky;top:0;z-index:50;
-    background:rgba(247,243,234,.95);backdrop-filter:blur(6px);
-    border-bottom:1px solid var(--line);
-    display:flex;align-items:center;gap:1rem;
-    padding:.6rem 1.2rem;flex-wrap:wrap;
-  }
-  nav .brand{font-weight:700;letter-spacing:.02em;font-size:.95rem;border:none;color:var(--ink)}
-  nav .links{display:flex;gap:.9rem;flex-wrap:wrap;font-family:var(--sans);font-size:.78rem}
-  nav .links a{border:none;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.06em}
-  nav .links a:hover{color:var(--accent)}
-  .lang-switch{margin-left:auto;display:flex;gap:.3rem}
-  .lang-switch button{
-    font-family:var(--sans);font-size:.75rem;letter-spacing:.05em;
-    padding:.25rem .6rem;border:1px solid var(--line);background:transparent;
-    cursor:pointer;color:var(--ink-soft);border-radius:3px;
-  }
-  .lang-switch button.active{background:var(--ink);color:var(--paper);border-color:var(--ink)}
-
-  /* ---- layout ---- */
-  header.hero{
-    max-width:880px;margin:0 auto;padding:5rem 1.5rem 3.5rem;text-align:center;
-  }
-  .hero .kicker{
-    font-family:var(--sans);font-size:.75rem;letter-spacing:.25em;text-transform:uppercase;
-    color:var(--gold);margin-bottom:1.2rem;
-  }
-  .hero h1{font-size:clamp(2rem,5.5vw,3.4rem);line-height:1.15;font-weight:600;margin-bottom:1.2rem}
-  .hero .subtitle{font-size:1.15rem;color:var(--ink-soft);max-width:640px;margin:0 auto 1.6rem;font-style:italic}
-  .hero .promise{
-    font-family:var(--sans);font-size:.85rem;color:var(--ink-soft);
-    max-width:560px;margin:0 auto;padding-top:1.2rem;border-top:1px solid var(--line);
-  }
-  main{max-width:880px;margin:0 auto;padding:0 1.5rem 4rem}
-  section{padding:3rem 0;border-top:1px solid var(--line)}
-  h2{font-size:1.7rem;font-weight:600;margin-bottom:.4rem}
-  .section-lede{color:var(--ink-soft);font-style:italic;margin-bottom:1.8rem;max-width:640px}
-  h3{font-size:1.15rem;font-weight:700;margin:1.6rem 0 .5rem}
-  p{margin-bottom:1rem}
-  .section-num{
-    font-family:var(--sans);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;
-    color:var(--gold);display:block;margin-bottom:.5rem;
-  }
-
-  /* ---- epistemic badges ---- */
-  .badge{
-    display:inline-block;font-family:var(--sans);font-size:.62rem;font-weight:700;
-    letter-spacing:.08em;text-transform:uppercase;padding:.14rem .5rem;border-radius:2px;
-    vertical-align:middle;margin-right:.45rem;white-space:nowrap;
-  }
-  .badge.fact{background:rgba(46,107,69,.12);color:var(--fact);border:1px solid rgba(46,107,69,.35)}
-  .badge.interp{background:rgba(168,132,44,.12);color:#7c6118;border:1px solid rgba(168,132,44,.4)}
-  .badge.debate{background:rgba(156,74,31,.10);color:var(--debate);border:1px solid rgba(156,74,31,.4)}
-
-  .legend{
-    background:var(--card);border:1px solid var(--line);border-radius:6px;
-    padding:1.2rem 1.4rem;margin:1.5rem 0;font-family:var(--sans);font-size:.85rem;
-  }
-  .legend div{margin:.45rem 0}
-
-  /* ---- timeline ---- */
-  .timeline{list-style:none;margin:2rem 0 0;position:relative;padding-left:1.6rem}
-  .timeline:before{content:"";position:absolute;left:.35rem;top:.4rem;bottom:.4rem;width:2px;background:var(--line)}
-  .timeline li{position:relative;margin-bottom:2rem;padding-left:.6rem}
-  .timeline li:before{
-    content:"";position:absolute;left:-1.53rem;top:.5rem;width:.65rem;height:.65rem;border-radius:50%;
-    background:var(--gold);border:2px solid var(--paper);
-  }
-  .timeline .date{font-family:var(--sans);font-weight:700;font-size:.85rem;letter-spacing:.05em;color:var(--accent)}
-  .timeline h3{margin:.15rem 0 .3rem;font-size:1.05rem}
-  .timeline p{font-size:.95rem;color:var(--ink-soft);margin-bottom:.3rem}
-  .why{font-size:.88rem;color:var(--ink);background:var(--paper-deep);border-left:3px solid var(--gold);padding:.5rem .8rem;border-radius:0 4px 4px 0;margin-top:.4rem}
-  .why em{font-style:normal;font-family:var(--sans);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:.15rem}
-
-  /* ---- force cards ---- */
-  .forces{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem;margin-top:1.6rem}
-  .force{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:1.2rem 1.3rem}
-  .force h3{margin:0 0 .5rem;font-size:1.02rem}
-  .force p{font-size:.9rem;color:var(--ink-soft);margin-bottom:.5rem}
-
-  /* ---- author lenses ---- */
-  .lens{
-    background:var(--card);border:1px solid var(--line);border-radius:8px;
-    padding:1.6rem 1.7rem;margin:1.6rem 0;
-  }
-  .lens .lens-head{display:flex;align-items:baseline;gap:.7rem;flex-wrap:wrap;margin-bottom:.3rem}
-  .lens h3{margin:0;font-size:1.25rem}
-  .lens .lens-tag{font-family:var(--sans);font-size:.75rem;color:var(--ink-soft);font-style:italic}
-  .lens .keyidea{
-    font-size:1.02rem;border-left:3px solid var(--accent);padding:.4rem .9rem;
-    margin:.9rem 0;background:var(--paper-deep);border-radius:0 4px 4px 0;
-  }
-  .lens p{font-size:.95rem}
-  .lens .meta{font-family:var(--sans);font-size:.82rem;color:var(--ink-soft);margin-top:.9rem;padding-top:.8rem;border-top:1px dashed var(--line)}
-  .lens .meta strong{color:var(--ink)}
-  .lens .critics{font-size:.88rem;color:var(--ink-soft);font-style:italic;margin-top:.6rem}
-
-  /* ---- convergence table ---- */
-  .conv{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.6rem}
-  @media(max-width:640px){.conv{grid-template-columns:1fr}}
-  .conv .col{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:1.2rem 1.4rem}
-  .conv h3{margin:0 0 .8rem;font-size:1rem;font-family:var(--sans);text-transform:uppercase;letter-spacing:.08em}
-  .conv ul{list-style:none}
-  .conv li{font-size:.92rem;margin-bottom:.8rem;padding-left:1rem;position:relative;color:var(--ink-soft)}
-  .conv li:before{content:"·";position:absolute;left:0;color:var(--gold);font-weight:700}
-
-  /* ---- toolbox ---- */
-  .tools{counter-reset:tool;margin-top:1.6rem}
-  .tool{display:flex;gap:1rem;margin-bottom:1.4rem;align-items:flex-start}
-  .tool .n{
-    counter-increment:tool;flex:0 0 2rem;height:2rem;border-radius:50%;
-    background:var(--ink);color:var(--paper);display:flex;align-items:center;justify-content:center;
-    font-family:var(--sans);font-weight:700;font-size:.9rem;
-  }
-  .tool .n:before{content:counter(tool)}
-  .tool h3{margin:0 0 .25rem;font-size:1.02rem}
-  .tool p{font-size:.92rem;color:var(--ink-soft);margin:0}
-
-  /* ---- glossary ---- */
-  .glossary{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;margin-top:1.6rem}
-  .term{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:1rem 1.1rem}
-  .term h3{margin:0 0 .35rem;font-size:.95rem;color:var(--accent)}
-  .term p{font-size:.86rem;color:var(--ink-soft);margin:0}
-
-  /* ---- sources ---- */
-  .sources{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:1.6rem}
-  @media(max-width:640px){.sources{grid-template-columns:1fr}}
-  .src-col h3{font-size:.95rem;font-family:var(--sans);text-transform:uppercase;letter-spacing:.08em;margin:0 0 .8rem}
-  .src-col ul{list-style:none}
-  .src-col li{font-size:.9rem;margin-bottom:.55rem;color:var(--ink-soft)}
-
-  footer{
-    border-top:1px solid var(--line);background:var(--paper-deep);
-    padding:2.5rem 1.5rem;text-align:center;font-family:var(--sans);font-size:.82rem;color:var(--ink-soft);
-  }
-  footer p{max-width:640px;margin:0 auto .6rem}
-</style>
+<link rel="stylesheet" href="styles.css">
+<script>
+(function(){var l='fr';try{var u=new URLSearchParams(location.search).get('lang');if(u==='fr'||u==='en')l=u;}catch(e){}
+if(l==='fr'){try{var s=localStorage.getItem('tchdm-lang');if(s==='fr'||s==='en')l=s;}catch(e){}}
+document.documentElement.className='lang-'+l;document.documentElement.lang=l;})();
+</script>
 </head>
-<body class="lang-fr">
-
+<body>
 <nav>
-  <a class="brand" href="#top">
+  <a class="brand" href="index.html" class="active">
     <span class="fr">Les choses cachées du monde</span><span class="en">Things Hidden from the World</span>
   </a>
   <div class="links">
-    <a href="#demarche"><span class="fr">Démarche</span><span class="en">Approach</span></a>
-    <a href="#histoire"><span class="fr">Histoire</span><span class="en">History</span></a>
-    <a href="#forces"><span class="fr">Forces</span><span class="en">Forces</span></a>
-    <a href="#grilles"><span class="fr">Grilles de lecture</span><span class="en">Five lenses</span></a>
-    <a href="#chroniques"><span class="fr">Chroniques</span><span class="en">Case studies</span></a>
-    <a href="#boussole"><span class="fr">Garde-fous</span><span class="en">Guardrails</span></a>
-    <a href="#glossaire"><span class="fr">Glossaire</span><span class="en">Glossary</span></a>
-    <a href="#sources">Sources</a>
+    <a href="demarche.html"><span class="fr">Démarche</span><span class="en">Approach</span></a>
+    <a href="histoire.html"><span class="fr">Histoire</span><span class="en">History</span></a>
+    <a href="forces.html"><span class="fr">Forces</span><span class="en">Forces</span></a>
+    <a href="grilles.html"><span class="fr">Grilles de lecture</span><span class="en">Five lenses</span></a>
+    <a href="chroniques.html"><span class="fr">Chroniques</span><span class="en">Case studies</span></a>
+    <a href="garde-fous.html"><span class="fr">Garde-fous</span><span class="en">Guardrails</span></a>
+    <a href="glossaire.html"><span class="fr">Glossaire</span><span class="en">Glossary</span></a>
+    <a href="sources.html"><span class="fr">Sources</span><span class="en">Sources</span></a>
   </div>
   <div class="lang-switch">
     <button id="btn-fr" class="active" onclick="setLang('fr')">FR</button>
     <button id="btn-en" onclick="setLang('en')">EN</button>
   </div>
 </nav>
-
 <header class="hero" id="top">
   <div class="kicker">
     <span class="fr">Comprendre les structures, pas nourrir les peurs</span>
@@ -217,581 +50,50 @@
     <span class="en">This site is not a manifesto. It is a map. Every claim is labeled by its degree of certainty, every thesis is attributed to its author, and the critics get a hearing. You remain the judge.</span>
   </p>
 </header>
-
-<main>
-
-<!-- ============ SECTION: DEMARCHE ============ -->
-<section id="demarche">
-  <span class="section-num"><span class="fr">01 · Démarche</span><span class="en">01 · Approach</span></span>
-  <h2><span class="fr">Comment lire ce site</span><span class="en">How to read this site</span></h2>
-  <p class="section-lede">
-    <span class="fr">Le sujet attire deux réflexes également stériles : tout rejeter comme « complotisme », ou tout avaler comme révélation. Nous proposons une troisième voie.</span>
-    <span class="en">This subject attracts two equally sterile reflexes: dismissing everything as "conspiracy theory," or swallowing everything as revelation. We propose a third way.</span>
-  </p>
-  <p>
-    <span class="fr">L'idée que des intérêts financiers organisés pèsent sur la politique mondiale n'a rien d'ésotérique. Les banques centrales, les places offshore, les marchés de la dette et les grandes institutions internationales existent, sont documentés, et leur fonctionnement est largement méconnu du grand public. La question intéressante n'est pas « existe-t-il des structures de pouvoir discrètes ? » (la réponse est banalement oui), mais « comment fonctionnent-elles, qui les anime, et quelles interprétations en proposer ? »</span>
-    <span class="en">The idea that organized financial interests weigh on world politics is not esoteric. Central banks, offshore financial centers, debt markets and the great international institutions exist, are documented, and remain largely unknown to the general public. The interesting question is not "do discreet power structures exist?" (the answer is trivially yes), but "how do they work, who animates them, and what interpretations can be offered?"</span>
-  </p>
-  <p>
-    <span class="fr">Pour garder cette distinction claire, chaque élément du site porte l'une des trois étiquettes suivantes :</span>
-    <span class="en">To keep that distinction clear, every element on this site carries one of three labels:</span>
-  </p>
-  <div class="legend">
-    <div><span class="badge fact"><span class="fr">Fait</span><span class="en">Fact</span></span>
-      <span class="fr">Établi et vérifiable dans des sources conventionnelles : archives, textes de loi, données officielles, presse de référence.</span>
-      <span class="en">Established and verifiable in conventional sources: archives, legal texts, official data, mainstream reference press.</span>
-    </div>
-    <div><span class="badge interp"><span class="fr">Interprétation</span><span class="en">Interpretation</span></span>
-      <span class="fr">Lecture argumentée de faits réels, proposée par un auteur identifié. Plausible pour les uns, excessive pour les autres.</span>
-      <span class="en">A reasoned reading of real facts, proposed by an identified author. Plausible to some, overreaching to others.</span>
-    </div>
-    <div><span class="badge debate"><span class="fr">Débattu</span><span class="en">Contested</span></span>
-      <span class="fr">Thèse fortement contestée, reposant sur des sources dont la nature même fait débat. Présentée ici comme objet d'analyse, jamais comme fait acquis.</span>
-      <span class="en">A strongly contested thesis resting on sources whose very nature is disputed. Presented here as an object of analysis, never as settled fact.</span>
-    </div>
-  </div>
-  <p>
-    <span class="fr">Enfin, une règle d'or : toutes les thèses présentées ici appartiennent à leurs auteurs. Ce site les expose parce qu'elles constituent une famille intellectuelle cohérente et influente qu'il vaut la peine de connaître, y compris pour la critiquer.</span>
-    <span class="en">One golden rule, finally: every thesis presented here belongs to its author. This site lays them out because they form a coherent and influential intellectual family worth knowing, including in order to criticize it.</span>
-  </p>
-</section>
-<!-- ============ SECTION: HISTOIRE ============ -->
-<section id="histoire">
-  <span class="section-num"><span class="fr">02 · Le socle historique</span><span class="en">02 · The historical bedrock</span></span>
-  <h2><span class="fr">Commencer par les faits</span><span class="en">Start with the facts</span></h2>
-  <p class="section-lede">
-    <span class="fr">Avant toute interprétation, une chronologie. Chacun de ces jalons est documenté dans l'histoire économique conventionnelle. C'est sur ce socle que les auteurs présentés plus bas construisent leurs lectures.</span>
-    <span class="en">Before any interpretation, a chronology. Each of these milestones is documented in conventional economic history. This is the bedrock on which the authors presented below build their readings.</span>
-  </p>
-  <ol class="timeline">
-    <li>
-      <span class="badge fact"><span class="fr">Fait</span><span class="en">Fact</span></span><span class="date">1694</span>
-      <h3><span class="fr">Naissance de la Banque d'Angleterre</span><span class="en">Birth of the Bank of England</span></h3>
-      <p><span class="fr">Créée par des investisseurs privés pour financer la guerre du roi Guillaume III contre la France, elle institutionnalise la dette publique : l'État emprunte en continu, les créanciers deviennent des acteurs permanents de la politique.</span>
-      <span class="en">Created by private investors to finance King William III's war against France, it institutionalizes public debt: the state borrows continuously, and creditors become permanent actors in politics.</span></p>
-      <div class="why"><em><span class="fr">Pourquoi c'est important</span><span class="en">Why it matters</span></em>
-        <span class="fr">C'est le prototype du lien moderne entre finance et puissance étatique. Toute la suite en découle.</span>
-        <span class="en">This is the prototype of the modern link between finance and state power. Everything that follows flows from it.</span></div>
-    </li>
-    <li>
-      <span class="badge fact"><span class="fr">Fait</span><span class="en">Fact</span></span><span class="date"><span class="fr">Depuis le Moyen Âge</span><span class="en">Since the Middle Ages</span></span>
-      <h3><span class="fr">La City de Londres, un statut unique au monde</span><span class="en">The City of London, a status unique in the world</span></h3>
-      <p><span class="fr">La City of London Corporation gouverne le « Square Mile » avec des privilèges antérieurs à la conquête normande : son propre Lord Mayor, un système électoral où les entreprises votent, et un officier, le Remembrancer, qui siège au Parlement britannique pour suivre toute législation touchant la City.</span>
-      <span class="en">The City of London Corporation governs the "Square Mile" with privileges predating the Norman conquest: its own Lord Mayor, an electoral system in which businesses vote, and an officer, the Remembrancer, who sits in the UK Parliament to monitor any legislation affecting the City.</span></p>
-      <div class="why"><em><span class="fr">Pourquoi c'est important</span><span class="en">Why it matters</span></em>
-        <span class="fr">Ce n'est pas une légende : la première place financière d'Europe jouit réellement d'une autonomie institutionnelle sans équivalent. Les interprétations divergent sur ce qu'il faut en conclure.</span>
-        <span class="en">This is no legend: Europe's leading financial center really does enjoy institutional autonomy without equivalent. Interpretations diverge on what to conclude from it.</span></div>
-    </li>
-    <li>
-      <span class="badge fact"><span class="fr">Fait</span><span class="en">Fact</span></span><span class="date">1815–1914</span>
-      <h3><span class="fr">Pax Britannica : l'empire du libre-échange</span><span class="en">Pax Britannica: the free-trade empire</span></h3>
-      <p><span class="fr">Étalon-or, Royal Navy, doctrine du libre-échange : Londres devient le centre financier du monde. Le débat de l'époque oppose déjà ce modèle au protectionnisme industriel américain (Hamilton, Lincoln) et allemand (List).</span>
-      <span class="en">Gold standard, Royal Navy, free-trade doctrine: London becomes the financial center of the world. The era's great debate already pits this model against American (Hamilton, Lincoln) and German (List) industrial protectionism.</span></p>
-      <div class="why"><em><span class="fr">Pourquoi c'est important</span><span class="en">Why it matters</span></em>
-        <span class="fr">« Système britannique » contre « système américain » : cette opposition du XIXᵉ siècle est la matrice de plusieurs grilles de lecture présentées plus bas.</span>
-        <span class="en">"British System" versus "American System": this 19th-century opposition is the matrix of several lenses presented below.</span></div>
-    </li>
-    <li>
-      <span class="badge fact"><span class="fr">Fait</span><span class="en">Fact</span></span><span class="date">1944</span>
-      <h3><span class="fr">Bretton Woods : le dollar au centre</span><span class="en">Bretton Woods: the dollar takes center stage</span></h3>
-      <p><span class="fr">Les accords de Bretton Woods organisent l'après-guerre autour d'un dollar convertible en or et créent le FMI et la Banque mondiale. La livre sterling cède officiellement la place ; la finance mondiale se réorganise autour de la monnaie américaine.</span>
-      <span class="en">The Bretton Woods agreements organize the postwar world around a gold-convertible dollar and create the IMF and the World Bank. Sterling officially yields; global finance reorganizes around the American currency.</span></p>
-    </li>
-    <li>
-      <span class="badge fact"><span class="fr">Fait</span><span class="en">Fact</span></span><span class="date"><span class="fr">Années 1950–60</span><span class="en">1950s–60s</span></span>
-      <h3><span class="fr">L'invention de l'eurodollar : le dollar hors d'Amérique</span><span class="en">The eurodollar invention: dollars outside America</span></h3>
-      <p><span class="fr">Des dollars déposés dans des banques londoniennes échappent à la réglementation américaine. Ce marché « offshore » du dollar, né dans la City, devient en quelques décennies un océan de financement mondial que personne ne supervise entièrement, pas même la Réserve fédérale.</span>
-      <span class="en">Dollars deposited in London banks escape American regulation. This "offshore" dollar market, born in the City, becomes within a few decades an ocean of global funding that no one fully supervises, not even the Federal Reserve.</span></p>
-      <div class="why"><em><span class="fr">Pourquoi c'est important</span><span class="en">Why it matters</span></em>
-        <span class="fr">Comprendre l'eurodollar, c'est comprendre pourquoi Londres est restée puissante après l'Empire, et pourquoi le contrôle de la « plomberie » du dollar est un enjeu géopolitique majeur.</span>
-        <span class="en">To understand the eurodollar is to understand why London remained powerful after the Empire, and why control of the dollar's "plumbing" is a major geopolitical stake.</span></div>
-    </li>
-    <li>
-      <span class="badge fact"><span class="fr">Fait</span><span class="en">Fact</span></span><span class="date">1971</span>
-      <h3><span class="fr">Nixon ferme la fenêtre de l'or</span><span class="en">Nixon closes the gold window</span></h3>
-      <p><span class="fr">Le 15 août 1971, les États-Unis suspendent la convertibilité du dollar en or. La monnaie mondiale devient purement fiduciaire ; la création de crédit se libère de toute ancre physique. Les accords pétroliers des années 1970 arriment ensuite la demande mondiale de dollars au pétrole.</span>
-      <span class="en">On August 15, 1971, the United States suspends the dollar's convertibility into gold. World money becomes purely fiduciary; credit creation is freed from any physical anchor. The oil arrangements of the 1970s then tie global dollar demand to petroleum.</span></p>
-    </li>
-    <li>
-      <span class="badge fact"><span class="fr">Fait</span><span class="en">Fact</span></span><span class="date">1986</span>
-      <h3><span class="fr">Le « Big Bang » de la City</span><span class="en">The City's "Big Bang"</span></h3>
-      <p><span class="fr">La dérégulation Thatcher rouvre à Londres les portes de la finance mondiale. La City redevient la plaque tournante des capitaux internationaux, articulée à un réseau de territoires britanniques offshore (Jersey, Guernesey, îles Caïmans...).</span>
-      <span class="en">Thatcher's deregulation reopens the doors of global finance to London. The City again becomes the hub of international capital, articulated with a network of British offshore territories (Jersey, Guernsey, the Cayman Islands...).</span></p>
-    </li>
-    <li>
-      <span class="badge fact"><span class="fr">Fait</span><span class="en">Fact</span></span><span class="date">2008</span>
-      <h3><span class="fr">La crise financière mondiale</span><span class="en">The global financial crisis</span></h3>
-      <p><span class="fr">L'effondrement du système bancaire parallèle contraint les banques centrales à des interventions sans précédent (sauvetages, « quantitative easing »). Elles deviennent, de fait, les acteurs dominants de l'économie mondiale, sans mandat démocratique élargi.</span>
-      <span class="en">The collapse of the shadow banking system forces central banks into unprecedented interventions (bailouts, quantitative easing). They become, de facto, the dominant actors of the world economy, without any broadened democratic mandate.</span></p>
-    </li>
-    <li>
-      <span class="badge fact"><span class="fr">Fait</span><span class="en">Fact</span></span><span class="date">2012</span>
-      <h3><span class="fr">Le scandale du LIBOR</span><span class="en">The LIBOR scandal</span></h3>
-      <p><span class="fr">On découvre que le LIBOR, taux de référence fixé à Londres et adossé à des centaines de milliers de milliards de dollars de contrats, était manipulé par les banques qui le déclaraient. Amendes record, procès, et perte de confiance durable.</span>
-      <span class="en">It emerges that LIBOR, the reference rate set in London and underpinning hundreds of trillions of dollars in contracts, was manipulated by the very banks reporting it. Record fines, trials, and a lasting loss of trust.</span></p>
-      <div class="why"><em><span class="fr">Pourquoi c'est important</span><span class="en">Why it matters</span></em>
-        <span class="fr">Un fait établi qui donne sa crédibilité de départ à toute lecture centrée sur le pouvoir des taux fixés à Londres.</span>
-        <span class="en">An established fact that lends initial credibility to any reading centered on the power of rates set in London.</span></div>
-    </li>
-    <li>
-      <span class="badge fact"><span class="fr">Fait</span><span class="en">Fact</span></span><span class="date">2019–2023</span>
-      <h3><span class="fr">Du LIBOR au SOFR : la plomberie change de mains</span><span class="en">From LIBOR to SOFR: the plumbing changes hands</span></h3>
-      <p><span class="fr">Après la crise du marché du repo (2019), la transition s'achève en juin 2023 : le LIBOR londonien est remplacé par le SOFR, un taux calculé à New York sur des transactions réelles et collatéralisées. La référence mondiale du coût du dollar passe de Londres aux États-Unis.</span>
-      <span class="en">After the repo market stress of 2019, the transition is completed in June 2023: London's LIBOR is replaced by SOFR, a rate computed in New York from real, collateralized transactions. The world's benchmark for the cost of dollars moves from London to the United States.</span></p>
-      <div class="why"><em><span class="fr">Pourquoi c'est important</span><span class="en">Why it matters</span></em>
-        <span class="fr">Un événement technique passé inaperçu du grand public, mais central dans la grille de lecture de Tom Luongo présentée plus bas.</span>
-        <span class="en">A technical event that went unnoticed by the public, yet central to Tom Luongo's lens presented below.</span></div>
-    </li>
-    <li>
-      <span class="badge fact"><span class="fr">Fait</span><span class="en">Fact</span></span><span class="date"><span class="fr">2022 à aujourd'hui</span><span class="en">2022 to today</span></span>
-      <h3><span class="fr">Sanctions, dédollarisation, monnaies numériques</span><span class="en">Sanctions, de-dollarization, digital currencies</span></h3>
-      <p><span class="fr">Le gel des réserves russes (2022) démontre que les avoirs en dollars et euros peuvent être confisqués. Les BRICS s'élargissent, le commerce en monnaies locales progresse, l'or des banques centrales atteint des records, et deux visions de la monnaie numérique s'affrontent : monnaies de banque centrale (CBDC) contre stablecoins adossés au dollar.</span>
-      <span class="en">The freezing of Russian reserves (2022) demonstrates that dollar and euro assets can be confiscated. BRICS expands, trade in local currencies grows, central bank gold purchases hit records, and two visions of digital money confront each other: central bank digital currencies (CBDCs) versus dollar-backed stablecoins.</span></p>
-      <div class="why"><em><span class="fr">Pourquoi c'est important</span><span class="en">Why it matters</span></em>
-        <span class="fr">C'est le chapitre en cours. Toutes les grilles de lecture présentées ici prétendent l'éclairer, chacune à sa manière.</span>
-        <span class="en">This is the chapter being written now. Every lens presented here claims to illuminate it, each in its own way.</span></div>
-    </li>
-  </ol>
-</section>
-
-<!-- ============ SECTION: FORCES ============ -->
-<section id="forces">
-  <span class="section-num"><span class="fr">03 · Les forces en présence</span><span class="en">03 · The forces at play</span></span>
-  <h2><span class="fr">Qui joue sur l'échiquier</span><span class="en">Who moves on the board</span></h2>
-  <p class="section-lede">
-    <span class="fr">Cinq ensembles d'acteurs reviennent dans toutes les analyses. Leur existence relève du fait ; la nature de leurs intentions et de leur coordination relève de l'interprétation.</span>
-    <span class="en">Five clusters of actors recur in every analysis. Their existence is a matter of fact; the nature of their intentions and coordination is a matter of interpretation.</span>
-  </p>
-  <div class="forces">
-    <div class="force">
-      <span class="badge fact"><span class="fr">Fait</span><span class="en">Fact</span></span>
-      <h3><span class="fr">Le réseau financier offshore</span><span class="en">The offshore financial network</span></h3>
-      <p><span class="fr">La City de Londres et sa constellation de juridictions liées (dépendances de la Couronne, territoires d'outre-mer) forment le premier réseau mondial de finance offshore, par où transite une part considérable des capitaux internationaux.</span>
-      <span class="en">The City of London and its constellation of linked jurisdictions (Crown dependencies, overseas territories) form the world's leading offshore financial network, through which a considerable share of international capital transits.</span></p>
-    </div>
-    <div class="force">
-      <span class="badge fact"><span class="fr">Fait</span><span class="en">Fact</span></span>
-      <h3><span class="fr">Les banques centrales</span><span class="en">The central banks</span></h3>
-      <p><span class="fr">Fed, BCE, Banque d'Angleterre, Banque du Japon, et leur forum commun, la Banque des règlements internationaux (BRI) à Bâle. Depuis 2008, leurs décisions pèsent plus que celles de bien des parlements. Leurs intérêts ne coïncident pas toujours.</span>
-      <span class="en">The Fed, ECB, Bank of England, Bank of Japan, and their common forum, the Bank for International Settlements (BIS) in Basel. Since 2008 their decisions have carried more weight than those of many parliaments. Their interests do not always coincide.</span></p>
-    </div>
-    <div class="force">
-      <span class="badge interp"><span class="fr">Interprétation</span><span class="en">Interpretation</span></span>
-      <h3><span class="fr">La nébuleuse « globaliste »</span><span class="en">The "globalist" nexus</span></h3>
-      <p><span class="fr">Forum de Davos, grandes fondations, gestionnaires d'actifs géants, institutions supranationales. Que ces enceintes existent et promeuvent une gouvernance mondiale intégrée est factuel ; qu'elles forment un bloc cohérent poursuivant un projet unifié est une thèse, défendue par les auteurs présentés ici et contestée par d'autres.</span>
-      <span class="en">The Davos forum, major foundations, giant asset managers, supranational institutions. That these venues exist and promote integrated global governance is factual; that they form a coherent bloc pursuing a unified project is a thesis, defended by the authors presented here and disputed by others.</span></p>
-    </div>
-    <div class="force">
-      <span class="badge fact"><span class="fr">Fait</span><span class="en">Fact</span></span>
-      <h3><span class="fr">Les courants souverainistes</span><span class="en">The sovereigntist currents</span></h3>
-      <p><span class="fr">Aux États-Unis comme en Europe et ailleurs, des mouvements politiques revendiquent la primauté de la nation sur les structures supranationales : relocalisation industrielle, contrôle des frontières monétaires et commerciales, méfiance envers les organisations internationales.</span>
-      <span class="en">In the United States as in Europe and beyond, political movements assert the primacy of the nation over supranational structures: industrial reshoring, control of monetary and trade borders, distrust of international organizations.</span></p>
-    </div>
-    <div class="force">
-      <span class="badge fact"><span class="fr">Fait</span><span class="en">Fact</span></span>
-      <h3><span class="fr">Le bloc multipolaire</span><span class="en">The multipolar bloc</span></h3>
-      <p><span class="fr">Les BRICS élargis, la Chine et la Russie en tête, construisent des infrastructures financières alternatives : systèmes de paiement, commerce en monnaies locales, accumulation d'or. Leur objectif déclaré est de réduire la dépendance au dollar et aux systèmes occidentaux.</span>
-      <span class="en">The enlarged BRICS, led by China and Russia, are building alternative financial infrastructure: payment systems, local-currency trade, gold accumulation. Their declared aim is to reduce dependence on the dollar and on Western systems.</span></p>
-    </div>
-  </div>
-</section>
-<!-- ============ SECTION: GRILLES DE LECTURE ============ -->
-<section id="grilles">
-  <span class="section-num"><span class="fr">04 · Cinq grilles de lecture</span><span class="en">04 · Five interpretive lenses</span></span>
-  <h2><span class="fr">Cinq auteurs, cinq angles</span><span class="en">Five authors, five angles</span></h2>
-  <p class="section-lede">
-    <span class="fr">Cinq analystes contemporains proposent des lectures structurées de ce socle historique. Ils ne disent pas la même chose, ne travaillent pas avec les mêmes méthodes, et n'ont pas le même rapport à la preuve. C'est précisément ce qui rend leur comparaison instructive.</span>
-    <span class="en">Five contemporary analysts offer structured readings of this historical bedrock. They do not say the same thing, do not work with the same methods, and do not hold themselves to the same standard of evidence. That is precisely what makes comparing them instructive.</span>
-  </p>
-
-  <!-- LUONGO -->
-  <div class="lens">
-    <div class="lens-head">
-      <span class="badge interp"><span class="fr">Interprétation</span><span class="en">Interpretation</span></span>
-      <h3>Tom Luongo</h3>
-      <span class="lens-tag"><span class="fr">La guerre pour le dollar</span><span class="en">The war for the dollar</span></span>
-    </div>
-    <p>
-      <span class="fr">Ancien chimiste devenu analyste financier indépendant (blog Gold Goats 'n Guns), Luongo lit la période actuelle comme un conflit entre le capital domestique américain, incarné par la Réserve fédérale et les banques commerciales new-yorkaises, et ce qu'il appelle « la bande de Davos » : l'axe Union européenne, BCE, City de Londres et Forum économique mondial.</span>
-      <span class="en">A former chemist turned independent financial analyst (Gold Goats 'n Guns blog), Luongo reads the current period as a conflict between American domestic capital, embodied by the Federal Reserve and New York's commercial banks, and what he calls "the Davos crowd": the axis of the European Union, the ECB, the City of London and the World Economic Forum.</span>
-    </p>
-    <div class="keyidea">
-      <span class="fr">Son idée-force : le remplacement du LIBOR (fixé à Londres) par le SOFR (calculé à New York) a retiré à la City son levier sur le coût mondial du dollar. Les hausses de taux de la Fed depuis 2022 seraient une arme géoéconomique assumée pour assécher le système offshore et rapatrier le contrôle du dollar aux États-Unis.</span>
-      <span class="en">His central idea: replacing LIBOR (set in London) with SOFR (computed in New York) stripped the City of its lever over the global cost of dollars. The Fed's rate hikes since 2022 would then be a deliberate geoeconomic weapon to drain the offshore system and repatriate control of the dollar to the United States.</span>
-    </div>
-    <p>
-      <span class="fr">Dans cette lecture, la Fed cesse d'être l'ennemi habituel des libertariens pour devenir, paradoxalement, un instrument de l'intérêt national américain contre le capital supranational. Ses écrits récents prolongent la thèse vers les stablecoins, présentés comme la nouvelle plomberie d'un dollar re-nationalisé.</span>
-      <span class="en">In this reading, the Fed stops being the libertarians' usual villain and becomes, paradoxically, an instrument of American national interest against supranational capital. His recent writing extends the thesis to stablecoins, presented as the new plumbing of a re-nationalized dollar.</span>
-    </p>
-    <div class="meta">
-      <strong><span class="fr">Où le lire :</span><span class="en">Where to read him:</span></strong> tomluongo.me ·
-      <span class="fr">articles clés : « SOFR v. LIBOR » (2022), série « The War for the Dollar » (2023)</span>
-      <span class="en">key pieces: "SOFR v. LIBOR" (2022), "The War for the Dollar" series (2023)</span>
-    </div>
-    <div class="critics">
-      <span class="fr">Ce que disent les critiques : il prêterait à la Fed une intentionnalité stratégique invérifiable, là où d'autres ne voient que des décisions de politique monétaire ordinaires ; son cadre « Davos » est classé par la presse dominante parmi les récits conspirationnistes.</span>
-      <span class="en">What critics say: he attributes to the Fed an unverifiable strategic intent where others see only ordinary monetary policy; his "Davos" framework is classed by mainstream media among conspiracist narratives.</span>
-    </div>
-  </div>
-
-  <!-- KRAINER -->
-  <div class="lens">
-    <div class="lens-head">
-      <span class="badge interp"><span class="fr">Interprétation</span><span class="en">Interpretation</span></span>
-      <h3>Alex Krainer</h3>
-      <span class="lens-tag"><span class="fr">L'empire qui ne meurt pas</span><span class="en">The empire that does not die</span></span>
-    </div>
-    <p>
-      <span class="fr">Gérant de fonds d'origine croate installé à Monaco, marqué par l'effondrement de la Yougoslavie, Krainer soutient que l'Empire britannique n'a pas disparu : il s'est financiarisé. Un réseau reliant la City, les services de renseignement et des gouvernements alliés continuerait de piloter la politique occidentale, selon la formule qu'il emprunte à Churchill : « les muscles américains au service du cerveau britannique ».</span>
-      <span class="en">A Croatian-born fund manager based in Monaco, marked by the collapse of Yugoslavia, Krainer argues that the British Empire never disappeared: it financialized. A network linking the City, intelligence services and allied governments would still be steering Western policy, in the formula he borrows from Churchill: "American brawn for British brains."</span>
-    </p>
-    <div class="keyidea">
-      <span class="fr">Son idée-force : les guerres sont aussi des opérations financières. Elles serviraient à contrôler des ressources et à gonfler la valeur des collatéraux qui soutiennent la pyramide de dette occidentale. Il lit ainsi l'Irak (2003) comme un moyen de soutenir le prix du pétrole, et l'engagement britannique en Ukraine comme une course aux ressources et aux collatéraux.</span>
-      <span class="en">His central idea: wars are also financial operations. They would serve to control resources and inflate the value of the collateral supporting the Western debt pyramid. He thus reads Iraq (2003) as a way of propping up oil prices, and Britain's engagement in Ukraine as a race for resources and collateral.</span>
-    </div>
-    <p>
-      <span class="fr">Son livre « Grand Deception » (2017), consacré à l'affaire Browder-Magnitski, fut retiré par Amazon, épisode que ses partisans citent comme censure et ses détracteurs comme retrait d'un contenu diffamatoire. Il est par ailleurs l'un des rares auteurs de cette famille à venir du trading systématique, avec une méfiance revendiquée envers la prévision.</span>
-      <span class="en">His book "Grand Deception" (2017), on the Browder-Magnitsky affair, was removed by Amazon, an episode his supporters cite as censorship and his detractors as the removal of defamatory content. He is also one of the few authors in this family to come from systematic trading, with a professed distrust of forecasting.</span>
-    </p>
-    <div class="meta">
-      <strong><span class="fr">Où le lire :</span><span class="en">Where to read him:</span></strong> alexkrainer.substack.com ·
-      <span class="fr">livres : « Grand Deception » (2017), « Mastering Uncertainty in Commodities Trading » (2016)</span>
-      <span class="en">books: "Grand Deception" (2017), "Mastering Uncertainty in Commodities Trading" (2016)</span>
-    </div>
-    <div class="critics">
-      <span class="fr">Ce que disent les critiques : ses chaînes causales (Irak, collatéraux, 2008) n'ont pas de corroboration académique ; il est régulièrement qualifié de pro-Kremlin, notamment pour sa lecture du dossier Browder et de la guerre d'Ukraine.</span>
-      <span class="en">What critics say: his causal chains (Iraq, collateral, 2008) lack academic corroboration; he is regularly described as pro-Kremlin, notably for his reading of the Browder affair and the Ukraine war.</span>
-    </div>
-  </div>
-
-  <!-- PROMETHEAN ACTION -->
-  <div class="lens">
-    <div class="lens-head">
-      <span class="badge interp"><span class="fr">Interprétation</span><span class="en">Interpretation</span></span>
-      <h3>Promethean Action</h3>
-      <span class="lens-tag"><span class="fr">Système américain contre système britannique</span><span class="en">American System versus British System</span></span>
-    </div>
-    <p>
-      <span class="fr">Organisation américaine issue du mouvement de Lyndon LaRouche (dont elle constitue la branche pro-Trump depuis la scission de 2024), Promethean Action relit toute l'histoire moderne comme l'affrontement de deux systèmes d'économie politique : le « système américain » de Hamilton, Lincoln et Roosevelt (crédit public dirigé vers l'industrie, les infrastructures et la science) contre le « système britannique » du libre-échange et de la rente financière.</span>
-      <span class="en">An American organization descended from the Lyndon LaRouche movement (of which it has been the pro-Trump branch since the 2024 split), Promethean Action rereads all of modern history as the clash of two systems of political economy: the "American System" of Hamilton, Lincoln and Roosevelt (public credit directed toward industry, infrastructure and science) versus the "British System" of free trade and financial rent.</span>
-    </p>
-    <div class="keyidea">
-      <span class="fr">Son idée-force : la vraie ligne de front n'est pas gauche contre droite mais production contre spéculation. Une nation prospère quand le crédit finance le travail, la machine-outil et la découverte scientifique ; elle décline quand il nourrit la rente. La filiation revendiquée court de Hamilton (1791) à Henry Carey, Friedrich List et aux billets verts de Lincoln.</span>
-      <span class="en">Its central idea: the real front line is not left versus right but production versus speculation. A nation prospers when credit finances labor, machine tools and scientific discovery; it declines when credit feeds rent-seeking. The claimed lineage runs from Hamilton (1791) through Henry Carey, Friedrich List and Lincoln's greenbacks.</span>
-    </div>
-    <p>
-      <span class="fr">Intérêt pédagogique : cette tradition rappelle un fait d'histoire des idées souvent oublié, à savoir que le protectionnisme industriel américain fut une doctrine construite explicitement contre le modèle impérial britannique. Ses adversaires soulignent en retour l'héritage controversé de LaRouche et une historiographie jugée téléologique.</span>
-      <span class="en">Pedagogical interest: this tradition recalls an often forgotten fact in the history of ideas, namely that American industrial protectionism was a doctrine built explicitly against the British imperial model. Its adversaries point in return to LaRouche's controversial legacy and to a historiography they judge teleological.</span>
-    </p>
-    <div class="meta">
-      <strong><span class="fr">Où les lire :</span><span class="en">Where to read them:</span></strong> prometheanaction.com ·
-      <span class="fr">formats réguliers : Monday Brief, Saturday Class</span>
-      <span class="en">regular formats: Monday Brief, Saturday Class</span>
-    </div>
-    <div class="critics">
-      <span class="fr">Ce que disent les critiques : les observatoires classent l'organisation comme héritière d'un mouvement construit sur de vastes théories du complot historiques ; sa lecture pro-Trump de l'actualité est militante et assumée comme telle.</span>
-      <span class="en">What critics say: watchdogs class the organization as heir to a movement built on sweeping historical conspiracy theories; its pro-Trump reading of current events is activist and openly so.</span>
-    </div>
-  </div>
-
-  <!-- BERTON -->
-  <div class="lens">
-    <div class="lens-head">
-      <span class="badge debate"><span class="fr">Débattu</span><span class="en">Contested</span></span>
-      <h3>Stanislas Berton</h3>
-      <span class="lens-tag"><span class="fr">La lecture civilisationnelle et l'énigme Q</span><span class="en">The civilizational reading and the Q enigma</span></span>
-    </div>
-    <p>
-      <span class="fr">Essayiste français (« L'Homme et la Cité », quatre volumes), Berton propose la lecture la plus englobante des cinq : le mondialisme serait un projet politico-religieux visant l'effacement des nations, des identités et du fait religieux, dont l'oligarchie financière anglo-saxonne serait le cœur opérationnel. Le conflit, chez lui, est d'abord spirituel et civilisationnel avant d'être économique.</span>
-      <span class="en">A French essayist ("L'Homme et la Cité," four volumes), Berton offers the most encompassing reading of the five: globalism would be a politico-religious project aiming at the erasure of nations, identities and religion, with the Anglo-Saxon financial oligarchy as its operational core. The conflict, for him, is spiritual and civilizational before it is economic.</span>
-    </p>
-    <div class="keyidea">
-      <span class="fr">Sa thèse la plus controversée porte sur les « posts Q » publiés anonymement en ligne entre 2017 et 2020 : il y voit une opération de réinformation conduite par des services américains. C'est une affirmation invérifiable en l'état, que la quasi-totalité des médias et chercheurs rangent dans le phénomène conspirationniste « QAnon », qualification que Berton récuse. Nous la présentons ici comme objet d'analyse, pas comme fait.</span>
-      <span class="en">His most controversial thesis concerns the "Q posts" published anonymously online between 2017 and 2020: he sees in them a re-information operation run by American services. This claim is unverifiable as it stands, and nearly all media and researchers file it under the "QAnon" conspiracy phenomenon, a label Berton rejects. We present it here as an object of analysis, not as fact.</span>
-    </div>
-    <p>
-      <span class="fr">Pourquoi le mentionner malgré tout ? Parce qu'il est l'un des rares auteurs francophones à articuler la question de la City, la critique du mondialisme et une lecture spirituelle de la crise occidentale, et que son audience réelle en France mérite d'être comprise plutôt qu'ignorée. Le lecteur abordera ce corpus avec un niveau d'exigence critique maximal.</span>
-      <span class="en">Why mention him at all? Because he is one of the few French-language authors to connect the City question, the critique of globalism and a spiritual reading of the Western crisis, and because his real audience in France deserves to be understood rather than ignored. The reader should approach this corpus with maximum critical rigor.</span>
-    </p>
-    <div class="meta">
-      <strong><span class="fr">Où le lire :</span><span class="en">Where to read him:</span></strong> stanislasberton.com ·
-      <span class="fr">livres : « L'Homme et la Cité » (vol. I à IV, 2020–2024), « La France Retrouvée » (2021)</span>
-      <span class="en">books: "L'Homme et la Cité" (vols. I–IV, 2020–2024), "La France Retrouvée" (2021)</span>
-    </div>
-    <div class="critics">
-      <span class="fr">Ce que disent les critiques : les observatoires du conspirationnisme (Conspiracy Watch notamment) le classent parmi les figures complotistes francophones ; ses thèses sur Q ne reposent sur aucune source vérifiable indépendamment.</span>
-      <span class="en">What critics say: conspiracy-theory watchdogs (notably Conspiracy Watch) class him among francophone conspiracist figures; his Q theses rest on no independently verifiable source.</span>
-    </div>
-  </div>
-
-  <!-- MARIPOSA -->
-  <div class="lens">
-    <div class="lens-head">
-      <span class="badge interp"><span class="fr">Interprétation</span><span class="en">Interpretation</span></span>
-      <h3>Vivify Mariposa</h3>
-      <span class="lens-tag"><span class="fr">La Machine : contrôler sans gouverner</span><span class="en">The Machine: control without governing</span></span>
-    </div>
-    <p>
-      <span class="fr">Auteure pseudonyme publiant en anglais et en espagnol (Substack « No Filter. Just Facts. »), Mariposa développe depuis 2026 la « série de la Machine » : l'Empire britannique ne serait pas mort mais transformé. Il aurait abandonné les parties coûteuses (gouverner des territoires) pour ne garder que les parties rentables : les mécanismes qui font fonctionner les territoires. Sa contribution la plus originale est de cartographier cette plomberie pièce par pièce : la compensation des paiements à Londres, le réseau offshore de la Couronne, la fixation des prix des matières premières, et surtout l'assurance, avec le quasi-monopole du Lloyd's sur l'assurance maritime des risques de guerre. D'où sa formule sur les conflits qui, loin d'être un problème pour ce système, en constituent le produit : chaque crise dans un détroit stratégique fait grimper les primes. Elle y ajoute une lecture géographique (le réseau du Commonwealth autour de la Chine comme carte opérationnelle unique) et une couche cognitive : la peur et les étiquettes disqualifiantes comme instruments qui ferment le débat avant qu'il ne commence.</span>
-      <span class="en">A pseudonymous author writing in English and Spanish (the "No Filter. Just Facts." Substack), Mariposa has been developing her "Machine Series" since 2026: the British Empire would not have died but transformed. It would have shed the expensive parts (governing territories) to keep only the profitable ones: the mechanisms that make territories function. Her most original contribution is mapping this plumbing piece by piece: payment clearing in London, the Crown's offshore network, commodity price-setting, and above all insurance, with Lloyd's quasi-monopoly on maritime war-risk cover. Hence her formula that conflict, far from being a problem for this system, is its product: every crisis in a strategic strait sends premiums soaring. She adds a geographic reading (the Commonwealth network around China as a single operational map) and a cognitive layer: fear and disqualifying labels as instruments that close debate before it begins.</span>
-    </p>
-    <div class="keyidea">
-      <span class="fr">Son idée-force tient en deux formules : « nul besoin de gouverner un territoire pour le contrôler, il suffit de contrôler les mécanismes qui le font fonctionner », et « l'Amérique a pris le blâme, Londres a pris la commission ». Sa lecture de l'actualité en découle : la doctrine Trump (relocalisation, tarifs, minerais critiques cotés en Amérique, garanties maritimes américaines remplaçant le Lloyd's dans le Golfe, distance prise avec le renseignement britannique) serait le premier démontage méthodique de cette machine en trois siècles.</span>
-      <span class="en">Her central idea fits in two formulas: "you do not need to govern a territory to control it, only to control the mechanisms that make it function," and "America took the blame, London took the fee." Her reading of current events follows: the Trump doctrine (reshoring, tariffs, critical minerals priced in America, US maritime guarantees replacing Lloyd's in the Gulf, distance taken from British intelligence) would be the first methodical dismantling of this machine in three centuries.</span>
-    </div>
-    <div class="meta">
-      <strong><span class="fr">Où la lire :</span><span class="en">Where to read her:</span></strong> nofilterjustfacts.substack.com ·
-      <span class="fr">essai pilier : « The Empire That Never Died » (mars 2026), série « The Machine », chroniques « Don't Read the News. Read the Record. »</span>
-      <span class="en">pillar essay: "The Empire That Never Died" (March 2026), "The Machine" series, "Don't Read the News. Read the Record." chronicles</span>
-    </div>
-    <div class="critics">
-      <span class="fr">Ce que disent les critiques : auteure pseudonyme, donc parcours et compétences invérifiables ; ses textes mêlent des faits documentés (scandale du LIBOR, poids du Lloyd's, réseaux offshore) et des affirmations contestées par les spécialistes, comme la qualification de la Fed en « société privée » ou les chiffres circulant sur les terres de la Couronne ; et sa lecture très favorable à la doctrine Trump relève de l'engagement assumé. À lire avec les garde-fous de la section 06.</span>
-      <span class="en">What critics say: a pseudonymous author, so background and credentials cannot be verified; her texts mix documented facts (the LIBOR scandal, Lloyd's weight, offshore networks) with claims specialists dispute, such as calling the Fed a "private corporation" or the circulating figures on Crown lands; and her highly favorable reading of the Trump doctrine is open advocacy. Read with the guardrails of section 06 in hand.</span>
-    </div>
-  </div>
-
-  <!-- CONVERGENCES -->
-  <h3 style="margin-top:2.5rem"><span class="fr">Où ces lectures convergent, où elles divergent</span><span class="en">Where these readings converge, where they diverge</span></h3>
-  <div class="conv">
-    <div class="col">
-      <h3><span class="fr">Convergences</span><span class="en">Convergences</span></h3>
-      <ul>
-        <li><span class="fr">Le pouvoir financier concentré autour de Londres et des réseaux offshore pèse sur les politiques nationales, largement hors du regard démocratique.</span><span class="en">Financial power concentrated around London and offshore networks weighs on national policies, largely out of democratic sight.</span></li>
-        <li><span class="fr">Le système du dollar est le champ de bataille central de l'époque : qui contrôle sa plomberie contrôle beaucoup du reste.</span><span class="en">The dollar system is the central battlefield of the era: whoever controls its plumbing controls much of the rest.</span></li>
-        <li><span class="fr">La période actuelle oppose une finance mondialisée à des courants de souveraineté nationale, et l'issue n'est pas écrite.</span><span class="en">The present period pits globalized finance against currents of national sovereignty, and the outcome is not written.</span></li>
-        <li><span class="fr">Le grand public ne dispose pas des clés de lecture de ces mécanismes, d'où l'importance de la pédagogie.</span><span class="en">The general public lacks the keys to these mechanisms, hence the importance of pedagogy.</span></li>
-      </ul>
-    </div>
-    <div class="col">
-      <h3><span class="fr">Divergences</span><span class="en">Divergences</span></h3>
-      <ul>
-        <li><span class="fr">La nature de l'adversaire : coalition d'intérêts changeante (Luongo), empire britannique continué (Krainer), système d'économie politique (Promethean Action), projet spirituel totalisant (Berton), machine de mécanismes sans visage : compensation, assurance, tarification (Mariposa).</span><span class="en">The nature of the adversary: a shifting coalition of interests (Luongo), a continued British empire (Krainer), a system of political economy (Promethean Action), a totalizing spiritual project (Berton), a faceless machine of mechanisms: clearing, insurance, pricing (Mariposa).</span></li>
-        <li><span class="fr">Le rapport à la preuve : Luongo et Krainer partent de données de marché ; Promethean Action d'une historiographie militante ; Berton inclut des sources dont la nature même est disputée.</span><span class="en">The standard of evidence: Luongo and Krainer start from market data; Promethean Action from an activist historiography; Berton includes sources whose very nature is disputed.</span></li>
-        <li><span class="fr">Le rôle des États-Unis : sauveur potentiel du système productif (Promethean, Luongo) ou muscle au service d'un cerveau extérieur (Krainer).</span><span class="en">The role of the United States: potential savior of the productive system (Promethean, Luongo) or brawn serving an outside brain (Krainer).</span></li>
-        <li><span class="fr">Le degré d'intentionnalité prêté aux acteurs, des simples incitations convergentes jusqu'au plan coordonné.</span><span class="en">The degree of intent attributed to the actors, from mere converging incentives to a coordinated plan.</span></li>
-      </ul>
-    </div>
-  </div>
-</section>
-<!-- ============ SECTION: CHRONIQUES ============ -->
-<section id="chroniques">
-  <span class="section-num"><span class="fr">05 · Chroniques</span><span class="en">05 · Case studies</span></span>
-  <h2><span class="fr">Les grilles à l'épreuve de l'actualité</span><span class="en">The lenses tested against current events</span></h2>
-  <p class="section-lede">
-    <span class="fr">Rien ne vaut un cas concret pour voir comment ces lectures fonctionnent. Voici trois conversations récentes du canal Rich Does Politics et une prise de position publiée sur X, résumées et annotées. Tout ce qui suit relève du témoignage et de l'interprétation de leurs auteurs, filmés en août 2026 : nous les présentons comme des documents, pas comme des faits établis.</span>
-    <span class="en">Nothing beats a concrete case for seeing how these readings work. Here are three recent conversations from the Rich Does Politics channel and one position published on X, summarized and annotated. Everything below is the testimony and interpretation of its authors, recorded in August 2026: we present them as documents, not as established facts.</span>
-  </p>
-
-  <div class="lens">
-    <div class="lens-head">
-      <span class="badge interp"><span class="fr">Interprétation</span><span class="en">Interpretation</span></span>
-      <h3><span class="fr">Dette, tokenisation et impôt sur le patrimoine</span><span class="en">Debt, tokenization and the taxing of wealth</span></h3>
-      <span class="lens-tag"><span class="fr">Rich Does Politics avec Miles Harris, 21 août 2026</span><span class="en">Rich Does Politics with Miles Harris, August 21, 2026</span></span>
-    </div>
-    <p>
-      <span class="fr">Le point de départ est un constat largement documenté : les dettes publiques croissent plus vite que la capacité des économies à les rembourser, et depuis 2022 les grandes banques centrales ont remplacé l'assouplissement quantitatif par son contraire, laissant les taux longs monter. La conversation en tire une lecture d'ensemble : privés du soutien des banques centrales, les États se tourneraient vers le patrimoine des ménages. D'où, selon les intervenants, les projets d'impôts sur la fortune et sur les plus-values latentes évoqués au Royaume-Uni, dans l'UE ou en Australie, et surtout la tokenisation des actifs réels : logements, dépôts bancaires, bijoux mis en gage, transformés en jetons numériques mobilisables et taxables en continu, sur des marchés ouverts 24h/24. Ils citent la formule du secrétaire au Trésor américain Scott Bessent, « monétiser le côté actif du bilan », et concluent que la dette devient le point d'accès par lequel chacun est arrimé à ce nouveau système, les stablecoins adossés aux bons du Trésor bouclant le mécanisme.</span>
-      <span class="en">The starting point is a widely documented fact: public debts are growing faster than economies can repay them, and since 2022 the major central banks have replaced quantitative easing with its opposite, letting long rates rise. The conversation draws a sweeping reading from this: deprived of central bank support, states would turn to household wealth. Hence, according to the speakers, the wealth and unrealized-gains taxes discussed in the UK, the EU or Australia, and above all the tokenization of real-world assets: homes, bank deposits, pledged jewelry, turned into digital tokens that can be mobilized and taxed continuously on markets open around the clock. They cite US Treasury Secretary Scott Bessent's phrase about "monetizing the asset side of the balance sheet," and conclude that debt becomes the access point tying everyone to this new system, with Treasury-backed stablecoins closing the loop.</span>
-    </p>
-    <div class="keyidea">
-      <span class="fr">Détail historique piquant : les intervenants critiquent Hamilton lui-même. Le Coinage Act de 1792, sans droit de seigneuriage sur l'argent-métal, aurait permis à la Compagnie des Indes orientales de siphonner l'argent américain vers l'Asie, répétant l'arbitrage déjà pratiqué sur la monnaie anglaise depuis 1666. Un rappel utile : même les auteurs favorables au « système américain » (voir la grille Promethean Action) n'en font pas un dogme sans failles.</span>
-      <span class="en">A piquant historical detail: the speakers criticize Hamilton himself. The Coinage Act of 1792, with no seigniorage charge on silver, would have let the East India Company siphon American silver toward Asia, repeating the arbitrage already run on English coin since 1666. A useful reminder: even authors sympathetic to the "American System" (see the Promethean Action lens) do not treat it as a flawless dogma.</span>
-    </div>
-    <div class="critics">
-      <span class="fr">Lecture critique : le socle factuel (niveaux de dette, fin du QE, débats fiscaux, expérimentations de tokenisation) est réel et vérifiable ; l'enchaînement intentionnel (« on tokenise pour capter le patrimoine ») est une hypothèse invérifiable en l'état. La tokenisation est aussi défendue, par ses promoteurs, comme une simple modernisation des infrastructures financières.</span>
-      <span class="en">Critical reading: the factual base (debt levels, the end of QE, tax debates, tokenization pilots) is real and verifiable; the intentional chain ("tokenization is designed to capture household wealth") is an unverifiable hypothesis as it stands. Tokenization is also defended, by its promoters, as a mere modernization of financial infrastructure.</span>
-    </div>
-  </div>
-
-  <div class="lens">
-    <div class="lens-head">
-      <span class="badge interp"><span class="fr">Interprétation</span><span class="en">Interpretation</span></span>
-      <h3><span class="fr">Août 2026 : le Trésor américain contre les marchés de Londres</span><span class="en">August 2026: the US Treasury versus London's markets</span></h3>
-      <span class="lens-tag"><span class="fr">Rich Does Politics avec Tom Luongo, 23 août 2026</span><span class="en">Rich Does Politics with Tom Luongo, August 23, 2026</span></span>
-    </div>
-    <p>
-      <span class="fr">Application en temps réel de la grille Luongo présentée plus haut. Sa lecture des événements de l'été 2026 : fin juillet, le Trésor américain serait intervenu pour soutenir le yen japonais, en vendant des euros plutôt que des dollars, afin de protéger un allié et de casser les positions spéculatives adossées au « carry trade » du yen. En représailles, selon lui, des acteurs liés à Londres et à l'Europe auraient vendu des bons du Trésor américain à 30 ans pour faire monter les taux longs et fabriquer un récit de crise avant les élections de mi-mandat. La riposte du secrétaire Bessent : étendre le programme de rachat de dette du Trésor et garantir publiquement la partie longue de la courbe, signal envoyé aux grands investisseurs que le capital serait « bien traité » aux États-Unis. Dans cette lecture, la hausse simultanée de l'or, de l'argent et du bitcoin traduit une expansion voulue du collatéral américain, prolongement direct de sa thèse SOFR : qui contrôle la plomberie du dollar contrôle le rapport de force.</span>
-      <span class="en">A real-time application of the Luongo lens presented above. His reading of the summer 2026 events: in late July, the US Treasury would have intervened to support the Japanese yen, selling euros rather than dollars, to protect an ally and break speculative positions built on the yen carry trade. In retaliation, he argues, actors linked to London and Europe would have sold 30-year US Treasuries to push long rates up and manufacture a crisis narrative before the midterm elections. Secretary Bessent's response: expand the Treasury's debt buyback program and publicly stand behind the long end of the curve, a signal to large investors that capital would be "treated well" in the United States. In this reading, the simultaneous rise of gold, silver and bitcoin reflects a deliberate expansion of American collateral, a direct extension of his SOFR thesis: whoever controls the dollar's plumbing controls the balance of power.</span>
-    </p>
-    <div class="keyidea">
-      <span class="fr">L'argument le plus vérifiable de l'entretien mérite d'être retenu : si la hausse des taux longs américains signifiait une défiance envers les États-Unis seuls, on ne verrait pas au même moment les taux allemands, britanniques et français à des sommets pluriannuels. La tension obligataire est mondiale, ce qui affaiblit le récit simple du « monde qui fuit le dollar ».</span>
-      <span class="en">The most verifiable argument of the interview is worth keeping: if rising US long rates meant distrust of the United States alone, German, British and French yields would not be hitting multi-year highs at the same moment. The bond stress is global, which weakens the simple "world fleeing the dollar" narrative.</span>
-    </div>
-    <div class="critics">
-      <span class="fr">Lecture critique : l'attribution d'une intention hostile coordonnée (« Londres a essayé de faire dérailler l'économie ») repose sur des indices de marché, pas sur des preuves documentaires. Une lecture concurrente expliquerait les mêmes mouvements par des dynamiques de marché ordinaires : arbitrages, couvertures, réactions en chaîne sur des marchés à fort effet de levier.</span>
-      <span class="en">Critical reading: the attribution of a coordinated hostile intent ("London tried to derail the economy") rests on market clues, not documentary evidence. A competing reading would explain the same moves through ordinary market dynamics: arbitrage, hedging, chain reactions in highly leveraged markets.</span>
-    </div>
-  </div>
-  <div class="lens">
-    <div class="lens-head">
-      <span class="badge interp"><span class="fr">Interprétation</span><span class="en">Interpretation</span></span>
-      <h3><span class="fr">L'Iran, les sanctions et le CGRI lu comme un empire financier</span><span class="en">Iran, sanctions and the IRGC read as a financial empire</span></h3>
-      <span class="lens-tag"><span class="fr">Rich Does Politics avec Ace (American Fire), 22 août 2026</span><span class="en">Rich Does Politics with Ace (American Fire), August 22, 2026</span></span>
-    </div>
-    <p>
-      <span class="fr">Troisième cas, le plus géopolitique. Les intervenants commentent un décret de Trump menaçant de sanctions toute entité aidant l'Iran, qu'ils baptisent « jour J économique ». Leur lecture : une guerre de siège financière plutôt que militaire. Les pauses entre les frappes serviraient à cartographier les réseaux bancaires de Téhéran (sept banques fermées, selon eux) avant de les couper, à la manière dont on fit tomber Al Capone par ses comptes plutôt que par les armes. Point d'appui intéressant : ils décrivent le CGRI, l'armée idéologique iranienne, comme un conglomérat financier davantage qu'une force religieuse. Ce poids économique du CGRI est effectivement documenté par ailleurs. Ils y greffent ensuite une connexion supposée avec la finance de l'ombre londonienne, et une liste de gains attribués à cette stratégie : accord avec le Canada, OTAN mise à nu, Netanyahou affaibli, retrait des bases américaines rendu possible.</span>
-      <span class="en">The third and most geopolitical case. The speakers discuss a Trump order threatening sanctions against any entity helping Iran, which they dub "economic D-Day." Their reading: a financial siege rather than a military war. The pauses between strikes would serve to map Tehran's banking networks (seven banks shut down, by their count) before severing them, the way Al Capone was brought down through his accounts rather than by force. An interesting anchor: they describe the IRGC, Iran's ideological army, as a financial conglomerate more than a religious force. The IRGC's economic weight is indeed documented elsewhere. Onto this they graft a supposed connection to London's shadow finance, and a list of gains credited to the strategy: a deal with Canada, NATO laid bare, a weakened Netanyahu, a possible withdrawal from American bases.</span>
-    </p>
-    <div class="keyidea">
-      <span class="fr">Le moment le plus instructif de l'entretien est épistémologique : les intervenants assument leurs désaccords avec des auteurs pourtant proches. Ace note qu'Alex Krainer jugerait « folle » sa connexion CGRI-Londres, et tous deux reprochent à d'autres analystes de ne jamais mentionner la City. Preuve utile que cette famille intellectuelle n'est pas un bloc : ses membres se contredisent, se testent et revendiquent le droit de changer d'avis (l'un des deux raconte être passé de l'école autrichienne au système hamiltonien).</span>
-      <span class="en">The most instructive moment of the interview is epistemological: the speakers own their disagreements with authors close to them. Ace notes that Alex Krainer would find his IRGC-London connection "crazy," and both fault other analysts for never mentioning the City. Useful proof that this intellectual family is no monolith: its members contradict each other, test each other, and claim the right to change their minds (one recounts moving from the Austrian school to the Hamiltonian system).</span>
-    </div>
-    <div class="critics">
-      <span class="fr">Lecture critique : c'est le cas le plus vulnérable au biais de confirmation des trois. Une grille où les pauses, les silences et même les revers confirment toujours le plan (« vérité directionnelle », « faire confiance à Trump ») est par construction difficile à réfuter ; nos garde-fous 2 et 4 s'appliquent pleinement. Le socle vérifiable (sanctions secondaires, poids économique du CGRI) reste mince par rapport à la chaîne spéculative (Londres derrière Téhéran, intention coordonnée).</span>
-      <span class="en">Critical reading: this is the most confirmation-bias-prone case of the three. A lens in which pauses, silences and even setbacks always confirm the plan ("directional truth," "trust Trump") is by construction hard to refute; our guardrails 2 and 4 fully apply. The verifiable base (secondary sanctions, the IRGC's economic weight) remains thin next to the speculative chain (London behind Tehran, coordinated intent).</span>
-    </div>
-  </div>
-  <div class="lens">
-    <div class="lens-head">
-      <span class="badge interp"><span class="fr">Interprétation</span><span class="en">Interpretation</span></span>
-      <h3><span class="fr">Hamilton et Lincoln, agents de la City ? La dissidence interne</span><span class="en">Hamilton and Lincoln, agents of the City? The internal dissent</span></h3>
-      <span class="lens-tag"><span class="fr">EM Burlingame, publication sur X, 22 août 2026</span><span class="en">EM Burlingame, post on X, August 22, 2026</span></span>
-    </div>
-    <p>
-      <span class="fr">Quatrième document, et le plus corrosif, car il vient de l'intérieur de la famille intellectuelle présentée sur ce site. L'essayiste américain EM Burlingame y défend une opinion qu'il reconnaît lui-même impopulaire : Hamilton et Lincoln, les deux héros du « système américain », auraient en réalité servi la City de Londres. Sa méthode : juger sur les structures laissées en place plutôt que sur les récits officiels. Côté Hamilton : le refinancement de la dette au pair qui enrichit les spéculateurs au détriment des soldats et fermiers, la Première Banque des États-Unis calquée sur la Banque d'Angleterre, l'afflux de capitaux londoniens et hollandais. Côté Lincoln : les National Banking Acts qui écrasent les banques d'État, la dette fédérale rendue permanente, la destruction du contrepoids sudiste, la finance recentrée sur New York. Sa conclusion : la connexion avec Londres est « structurelle, pas un roman d'espionnage », par imitation du modèle et par les flux de capitaux ; la Fed n'est qu'une évolution de cette architecture, et le martyre des deux hommes a sacralisé des choix politiques contestables.</span>
-      <span class="en">A fourth document, and the most corrosive, because it comes from inside the intellectual family presented on this site. The American essayist EM Burlingame defends an opinion he himself admits is unpopular: Hamilton and Lincoln, the two heroes of the "American System," would in fact have served the City of London. His method: judge by the structures left standing rather than by the official stories. On Hamilton's side: the refunding of the debt at par that enriched speculators at the expense of soldiers and farmers, the First Bank of the United States modeled on the Bank of England, the inflow of London and Dutch capital. On Lincoln's side: the National Banking Acts that crushed state banks, federal debt made permanent, the destruction of the Southern counterweight, finance recentered on New York. His conclusion: the London connection is "structural, not a spy novel," through imitation of the model and through capital flows; the Fed is merely an evolution of that architecture, and the martyrdom of both men sanctified contestable policy choices.</span>
-    </p>
-    <div class="keyidea">
-      <span class="fr">Pourquoi ce texte compte pour ce site : il retourne la grille Promethean Action (section 04) contre ses propres héros, avec les mêmes faits. Là où les uns voient en Hamilton et Lincoln les bâtisseurs d'une économie productive arrachée à l'empire britannique, Burlingame voit les importateurs du modèle financier britannique en Amérique. Même socle factuel, verdicts opposés : démonstration grandeur nature que dans ce champ, le choix de la grille de lecture fait l'essentiel du travail, et que cette famille intellectuelle débat de ses propres fondations.</span>
-      <span class="en">Why this text matters for this site: it turns the Promethean Action lens (section 04) against its own heroes, using the same facts. Where some see in Hamilton and Lincoln the builders of a productive economy wrested from the British empire, Burlingame sees the importers of the British financial model into America. Same factual base, opposite verdicts: a life-size demonstration that in this field the choice of lens does most of the work, and that this intellectual family debates its own foundations.</span>
-    </div>
-    <div class="critics">
-      <span class="fr">Lecture critique : les faits invoqués (refinancement au pair, modèle de la Banque d'Angleterre, National Banking Acts, capitaux britanniques dans les chemins de fer après 1865) sont documentés ; la qualification de « traîtres » est un verdict moral, pas un fait, et l'idée d'éditeurs « soutenus par les Britanniques » façonnant les manuels scolaires n'est pas sourcée. L'historiographie académique décrit ces mêmes structures sans y voir une allégeance à Londres. Appliquer ici le garde-fou n°2 : qu'est-ce qui distinguerait une imitation intéressée d'une simple convergence de modèles ?</span>
-      <span class="en">Critical reading: the facts invoked (refunding at par, the Bank of England template, the National Banking Acts, British capital in post-1865 railroads) are documented; the "traitors" label is a moral verdict, not a fact, and the notion of "British-backed" publishers shaping school curricula is unsourced. Academic historiography describes these same structures without seeing an allegiance to London in them. Apply guardrail 2 here: what would distinguish interested imitation from mere convergence of models?</span>
-    </div>
-  </div>
-</section>
-
-<!-- ============ SECTION: GARDE-FOUS ============ -->
-<section id="boussole">
-  <span class="section-num"><span class="fr">06 · Garde-fous</span><span class="en">06 · Guardrails</span></span>
-  <h2><span class="fr">Penser ces questions sans perdre pied</span><span class="en">Thinking about these questions without losing your footing</span></h2>
-  <p class="section-lede">
-    <span class="fr">Explorer les structures du pouvoir expose à un risque réel : celui de basculer d'une saine curiosité vers une vision du monde fermée, où tout confirme tout. Voici six règles d'hygiène intellectuelle que ce site s'applique à lui-même.</span>
-    <span class="en">Exploring power structures carries a real risk: tipping from healthy curiosity into a closed worldview where everything confirms everything. Here are six rules of intellectual hygiene that this site applies to itself.</span>
-  </p>
-  <div class="tools">
-    <div class="tool"><div class="n"></div><div>
-      <h3><span class="fr">Distinguer structures et intentions</span><span class="en">Distinguish structures from intentions</span></h3>
-      <p><span class="fr">Des acteurs partageant les mêmes intérêts agissent souvent de façon coordonnée sans se concerter. Une convergence d'incitations n'est pas un complot ; c'est même l'explication la plus fréquente. Exiger la preuve d'une intention avant de l'affirmer.</span>
-      <span class="en">Actors sharing the same interests often act in coordinated ways without conferring. A convergence of incentives is not a conspiracy; it is in fact the most frequent explanation. Demand proof of intent before asserting it.</span></p>
-    </div></div>
-    <div class="tool"><div class="n"></div><div>
-      <h3><span class="fr">Se demander : qu'est-ce qui me ferait changer d'avis ?</span><span class="en">Ask: what would change my mind?</span></h3>
-      <p><span class="fr">Une thèse qui ne peut être réfutée par aucune observation n'explique rien. Les meilleures lectures présentées ici font des prédictions vérifiables ; les plus faibles réinterprètent tout événement comme une confirmation.</span>
-      <span class="en">A thesis no observation could refute explains nothing. The best readings presented here make testable predictions; the weakest reinterpret every event as confirmation.</span></p>
-    </div></div>
-    <div class="tool"><div class="n"></div><div>
-      <h3><span class="fr">Suivre l'argent, mais vérifier la source</span><span class="en">Follow the money, but check the source</span></h3>
-      <p><span class="fr">« Suivre l'argent » est une bonne méthode à condition que les chiffres soient réels. Privilégier les données primaires : rapports de banques centrales, statistiques de la BRI, documents officiels, avant les commentaires qui les interprètent.</span>
-      <span class="en">"Follow the money" is a sound method provided the numbers are real. Prefer primary data: central bank reports, BIS statistics, official documents, before the commentary interpreting them.</span></p>
-    </div></div>
-    <div class="tool"><div class="n"></div><div>
-      <h3><span class="fr">Se méfier des explications uniques</span><span class="en">Beware of single-cause explanations</span></h3>
-      <p><span class="fr">Le monde est surdéterminé : erreurs, hasards, rivalités internes et incompétences pèsent autant que les stratégies. Une grille qui explique tout par un seul acteur en dit plus sur son auteur que sur le monde.</span>
-      <span class="en">The world is overdetermined: mistakes, accidents, internal rivalries and incompetence weigh as much as strategies. A lens that explains everything through a single actor says more about its author than about the world.</span></p>
-    </div></div>
-    <div class="tool"><div class="n"></div><div>
-      <h3><span class="fr">Lire les critiques des auteurs qu'on apprécie</span><span class="en">Read the critics of the authors you like</span></h3>
-      <p><span class="fr">Chaque fiche de ce site contient un paragraphe « ce que disent les critiques ». Ce n'est pas une concession : c'est la condition pour que la lecture reste un exercice de jugement et non d'adhésion.</span>
-      <span class="en">Every profile on this site includes a "what critics say" paragraph. This is not a concession: it is the condition for reading to remain an exercise in judgment rather than allegiance.</span></p>
-    </div></div>
-    <div class="tool"><div class="n"></div><div>
-      <h3><span class="fr">Garder l'estime des personnes</span><span class="en">Keep your respect for persons</span></h3>
-      <p><span class="fr">Critiquer des structures et des politiques est légitime. Réduire des groupes humains à des essences malfaisantes ne l'est jamais, et c'est historiquement la pente la plus dangereuse de ce type de littérature. Ce site s'interdit ce terrain.</span>
-      <span class="en">Criticizing structures and policies is legitimate. Reducing human groups to malevolent essences never is, and it is historically the most dangerous slope of this kind of literature. This site stays off that ground.</span></p>
-    </div></div>
-  </div>
-</section>
-
-<!-- ============ SECTION: GLOSSAIRE ============ -->
-<section id="glossaire">
-  <span class="section-num"><span class="fr">07 · Glossaire</span><span class="en">07 · Glossary</span></span>
-  <h2><span class="fr">Les mots pour comprendre</span><span class="en">The words you need</span></h2>
-  <div class="glossary">
-    <div class="term"><h3>Eurodollar</h3>
-      <p><span class="fr">Dollar détenu dans une banque hors des États-Unis, donc hors de la réglementation américaine. Né à Londres dans les années 1950, ce marché finance une grande partie du commerce mondial.</span>
-      <span class="en">A dollar held in a bank outside the United States, hence outside American regulation. Born in London in the 1950s, this market funds a large share of world trade.</span></p></div>
-    <div class="term"><h3>LIBOR / SOFR</h3>
-      <p><span class="fr">Taux de référence du coût du dollar. Le LIBOR était déclaré par des banques à Londres (et fut manipulé) ; le SOFR, qui l'a remplacé en 2023, est calculé à New York sur des transactions réelles.</span>
-      <span class="en">Benchmark rates for the cost of dollars. LIBOR was reported by banks in London (and was manipulated); SOFR, which replaced it in 2023, is computed in New York from real transactions.</span></p></div>
-    <div class="term"><h3><span class="fr">Collatéral</span><span class="en">Collateral</span></h3>
-      <p><span class="fr">Actif apporté en garantie d'un prêt (obligation d'État, immobilier, ressource). La valeur des collatéraux conditionne le volume de crédit que le système peut créer.</span>
-      <span class="en">An asset pledged to secure a loan (government bond, real estate, resource). The value of collateral conditions how much credit the system can create.</span></p></div>
-    <div class="term"><h3><span class="fr">Monnaie de réserve</span><span class="en">Reserve currency</span></h3>
-      <p><span class="fr">Monnaie que les banques centrales étrangères accumulent et dans laquelle le commerce mondial se règle. Ce statut confère au pays émetteur un « privilège exorbitant » : emprunter dans sa propre monnaie.</span>
-      <span class="en">A currency foreign central banks accumulate and in which world trade settles. This status grants the issuer an "exorbitant privilege": borrowing in its own currency.</span></p></div>
-    <div class="term"><h3>Offshore</h3>
-      <p><span class="fr">Juridictions à fiscalité et régulation allégées où sont domiciliés capitaux et sociétés. Le réseau lié au Royaume-Uni (Jersey, Caïmans, etc.) en est le premier ensemble mondial.</span>
-      <span class="en">Jurisdictions with light taxation and regulation where capital and companies are domiciled. The UK-linked network (Jersey, Cayman, etc.) is the world's largest such cluster.</span></p></div>
-    <div class="term"><h3><span class="fr">City of London Corporation</span><span class="en">City of London Corporation</span></h3>
-      <p><span class="fr">Gouvernement municipal du « Square Mile » financier de Londres, doté de privilèges anciens (Lord Mayor, vote des entreprises, Remembrancer au Parlement). Distincte de la ville de Londres au sens large.</span>
-      <span class="en">The municipal government of London's financial "Square Mile," endowed with ancient privileges (Lord Mayor, business vote, Remembrancer in Parliament). Distinct from Greater London.</span></p></div>
-    <div class="term"><h3>BRI / BIS</h3>
-      <p><span class="fr">Banque des règlements internationaux, à Bâle : « la banque centrale des banques centrales », forum discret où elles se coordonnent depuis 1930.</span>
-      <span class="en">The Bank for International Settlements, in Basel: "the central bank of central banks," a discreet forum where they have coordinated since 1930.</span></p></div>
-    <div class="term"><h3><span class="fr">Système américain</span><span class="en">American System</span></h3>
-      <p><span class="fr">Doctrine d'économie politique (Hamilton, Carey, List, Lincoln) : tarifs protecteurs, banque nationale, crédit public dirigé vers l'industrie et les infrastructures, par opposition au libre-échange britannique.</span>
-      <span class="en">A doctrine of political economy (Hamilton, Carey, List, Lincoln): protective tariffs, a national bank, public credit directed to industry and infrastructure, in opposition to British free trade.</span></p></div>
-    <div class="term"><h3>CBDC / Stablecoin</h3>
-      <p><span class="fr">Deux formes de monnaie numérique : la CBDC est émise par une banque centrale (contrôle public accru) ; le stablecoin est émis par un acteur privé et adossé à des actifs, souvent des bons du Trésor américain.</span>
-      <span class="en">Two forms of digital money: a CBDC is issued by a central bank (greater public control); a stablecoin is issued privately and backed by assets, often US Treasury bills.</span></p></div>
-    <div class="term"><h3><span class="fr">Multipolarité</span><span class="en">Multipolarity</span></h3>
-      <p><span class="fr">Ordre international où plusieurs pôles de puissance coexistent, par opposition à l'hégémonie d'un seul. Objectif déclaré des BRICS et cadre de la dédollarisation en cours.</span>
-      <span class="en">An international order where several poles of power coexist, as opposed to a single hegemony. The declared aim of BRICS and the frame of ongoing de-dollarization.</span></p></div>
-    <div class="term"><h3><span class="fr">Mondialisme</span><span class="en">Globalism</span></h3>
-      <p><span class="fr">Terme polémique désignant, chez les auteurs présentés ici, le projet d'une gouvernance supranationale intégrée réduisant la souveraineté des nations. Ses partisans parlent plutôt de coopération internationale.</span>
-      <span class="en">A polemical term designating, for the authors presented here, the project of integrated supranational governance reducing national sovereignty. Its proponents speak instead of international cooperation.</span></p></div>
-    <div class="term"><h3><span class="fr">Tokenisation</span><span class="en">Tokenization</span></h3>
-      <p><span class="fr">Représentation d'un actif réel (immobilier, dépôt bancaire, matière première) sous forme de jeton numérique échangeable en continu. Modernisation des infrastructures pour ses promoteurs, outil de mobilisation et de surveillance du patrimoine pour ses critiques.</span>
-      <span class="en">Representing a real-world asset (real estate, bank deposit, commodity) as a digital token tradable around the clock. Infrastructure modernization for its promoters, a tool for mobilizing and monitoring wealth for its critics.</span></p></div>
-    <div class="term"><h3>Carry trade</h3>
-      <p><span class="fr">Stratégie consistant à emprunter dans une monnaie à taux bas (longtemps le yen) pour placer dans une monnaie à taux plus élevé. Très rentable avec effet de levier, mais vulnérable aux mouvements de change : son débouclage peut secouer les marchés mondiaux.</span>
-      <span class="en">Borrowing in a low-rate currency (long the yen) to invest in a higher-rate one. Very profitable with leverage, but vulnerable to currency moves: its unwinding can shake global markets.</span></p></div>
-    <div class="term"><h3><span class="fr">Réinformation</span><span class="en">Re-information</span></h3>
-      <p><span class="fr">Terme revendiqué par les médias dissidents francophones pour désigner la correction de récits jugés faux ; leurs critiques y voient au contraire un vecteur de désinformation. Le mot lui-même est un marqueur du débat.</span>
-      <span class="en">A term claimed by French-language dissident media for the correction of narratives they deem false; their critics see it instead as a vector of disinformation. The word itself is a marker of the debate.</span></p></div>
-  </div>
-</section>
-
-<!-- ============ SECTION: SOURCES ============ -->
-<section id="sources">
-  <span class="section-num"><span class="fr">08 · Sources</span><span class="en">08 · Sources</span></span>
-  <h2><span class="fr">Pour aller plus loin</span><span class="en">Going further</span></h2>
-  <p class="section-lede">
-    <span class="fr">Deux colonnes, à dessein : les auteurs présentés sur ce site, et des travaux de référence indépendants qui documentent les mêmes structures avec d'autres méthodes. Lire les deux.</span>
-    <span class="en">Two columns, by design: the authors presented on this site, and independent reference works documenting the same structures with other methods. Read both.</span>
-  </p>
-  <div class="sources">
-    <div class="src-col">
-      <h3><span class="fr">Les auteurs présentés</span><span class="en">The featured authors</span></h3>
-      <ul>
-        <li>Tom Luongo — <a href="https://tomluongo.me" target="_blank" rel="noopener">tomluongo.me</a> (Gold Goats 'n Guns)</li>
-        <li>Alex Krainer — <a href="https://alexkrainer.substack.com" target="_blank" rel="noopener">alexkrainer.substack.com</a></li>
-        <li>Promethean Action — <a href="https://www.prometheanaction.com" target="_blank" rel="noopener">prometheanaction.com</a></li>
-        <li>Stanislas Berton — <a href="https://stanislasberton.com" target="_blank" rel="noopener">stanislasberton.com</a></li>
-        <li>Vivify Mariposa — <a href="https://nofilterjustfacts.substack.com" target="_blank" rel="noopener">nofilterjustfacts.substack.com</a></li>
-        <li><span class="fr">Vidéo : le fonctionnement de la City de Londres</span><span class="en">Video: how the City of London operates</span> — <a href="https://youtu.be/GuKCXQeckJk?t=2468" target="_blank" rel="noopener">youtu.be/GuKCXQeckJk</a> <span class="fr">(à partir de 41 min)</span><span class="en">(from 41 min)</span></li>
-        <li>Rich Does Politics &amp; Miles Harris, <em>London's Silver Cartel Exposed</em> (21/08/2026) — <a href="https://youtu.be/WaRPOObmtYQ" target="_blank" rel="noopener">youtu.be/WaRPOObmtYQ</a></li>
-        <li>Rich Does Politics &amp; Tom Luongo, <em>Britain Tried To Crash Trump's Economy Before The Midterms</em> (23/08/2026) — <a href="https://youtu.be/ZX7GXaRd_B0" target="_blank" rel="noopener">youtu.be/ZX7GXaRd_B0</a></li>
-        <li>Rich Does Politics &amp; Ace (American Fire), <em>Iran's Feared Army Is Actually A Bank</em> (22/08/2026) — <a href="https://youtu.be/ltMnCMytXjw" target="_blank" rel="noopener">youtu.be/ltMnCMytXjw</a></li>
-        <li>EM Burlingame, <span class="fr">publication sur Hamilton, Lincoln et la City</span><span class="en">post on Hamilton, Lincoln and the City</span> (22/08/2026) — <a href="https://x.com/emburlingame/status/2091119304343433392" target="_blank" rel="noopener">x.com/EMBurlingame</a></li>
-      </ul>
-    </div>
-    <div class="src-col">
-      <h3><span class="fr">Références indépendantes</span><span class="en">Independent references</span></h3>
-      <ul>
-        <li>Nicholas Shaxson, <em>Treasure Islands</em> (2011) — <span class="fr">enquête de référence sur la finance offshore et la City</span><span class="en">the reference investigation of offshore finance and the City</span></li>
-        <li>Adam Tooze, <em>Crashed</em> (2018) — <span class="fr">histoire de 2008 et du rôle mondial du dollar</span><span class="en">a history of 2008 and the dollar's global role</span></li>
-        <li>Perry Mehrling, <em>Money and Empire</em> (2022) — <span class="fr">histoire académique du système du dollar</span><span class="en">an academic history of the dollar system</span></li>
-        <li>Carroll Quigley, <em>Tragedy and Hope</em> (1966) — <span class="fr">histoire des élites anglo-américaines par un historien de Georgetown ; source ancienne à lire avec recul critique</span><span class="en">a Georgetown historian's account of Anglo-American elites; an older source to read with critical distance</span></li>
-        <li><span class="fr">Banque des règlements internationaux — travaux sur le financement mondial en dollars</span><span class="en">Bank for International Settlements — research on global dollar funding</span> (<a href="https://www.bis.org" target="_blank" rel="noopener">bis.org</a>)</li>
-        <li><span class="fr">Et la contradiction : Conspiracy Watch</span><span class="en">And the opposing view: Conspiracy Watch</span> (<a href="https://www.conspiracywatch.info" target="_blank" rel="noopener">conspiracywatch.info</a>) — <span class="fr">observatoire critique des auteurs présentés ici</span><span class="en">a critical watchdog of the authors presented here</span></li>
-      </ul>
-    </div>
-  </div>
-</section>
-</main>
-
+<div class="start"><div class="start-inner"><span class="fr">Vous découvrez le sujet ? Commencez par <a href="demarche.html">la démarche</a>, puis suivez les pages dans l'ordre : elles sont conçues pour se lire à la suite.</span><span class="en">New to the subject? Start with <a href="demarche.html">the approach</a>, then follow the pages in order: they are designed to be read in sequence.</span></div></div>
+<div class="cards">
+  <a class="card" href="demarche.html">
+    <span class="card-num">01</span>
+    <h3><span class="fr">Comment lire ce site</span><span class="en">How to read this site</span></h3>
+    <p><span class="fr">Trois étiquettes, une règle d'or, et pourquoi ce site n'est ni un brûlot ni un catéchisme.</span><span class="en">Three labels, one golden rule, and why this site is neither a polemic nor a catechism.</span></p>
+  </a>
+  <a class="card" href="histoire.html">
+    <span class="card-num">02</span>
+    <h3><span class="fr">Le socle historique</span><span class="en">The historical bedrock</span></h3>
+    <p><span class="fr">De la Banque d'Angleterre (1694) à la dédollarisation : onze jalons documentés.</span><span class="en">From the Bank of England (1694) to de-dollarization: eleven documented milestones.</span></p>
+  </a>
+  <a class="card" href="forces.html">
+    <span class="card-num">03</span>
+    <h3><span class="fr">Qui joue sur l'échiquier</span><span class="en">Who moves on the board</span></h3>
+    <p><span class="fr">Cinq ensembles d'acteurs : finance offshore, banques centrales, nébuleuse globaliste, souverainistes, bloc multipolaire.</span><span class="en">Five clusters of actors: offshore finance, central banks, the globalist nexus, sovereigntists, the multipolar bloc.</span></p>
+  </a>
+  <a class="card" href="grilles.html">
+    <span class="card-num">04</span>
+    <h3><span class="fr">Cinq auteurs, cinq angles</span><span class="en">Five authors, five angles</span></h3>
+    <p><span class="fr">Luongo, Krainer, Promethean Action, Berton, Mariposa : leurs thèses, et ce qu'en disent leurs critiques.</span><span class="en">Luongo, Krainer, Promethean Action, Berton, Mariposa: their theses, and what their critics say.</span></p>
+  </a>
+  <a class="card" href="chroniques.html">
+    <span class="card-num">05</span>
+    <h3><span class="fr">Les grilles à l'épreuve de l'actualité</span><span class="en">The lenses tested against current events</span></h3>
+    <p><span class="fr">Quatre documents d'août 2026, résumés et annotés, pour voir ces lectures à l'œuvre.</span><span class="en">Four documents from August 2026, summarized and annotated, showing these readings at work.</span></p>
+  </a>
+  <a class="card" href="garde-fous.html">
+    <span class="card-num">06</span>
+    <h3><span class="fr">Penser ces questions sans perdre pied</span><span class="en">Thinking about these questions without losing your footing</span></h3>
+    <p><span class="fr">Six règles d'hygiène intellectuelle que ce site s'applique à lui-même.</span><span class="en">Six rules of intellectual hygiene that this site applies to itself.</span></p>
+  </a>
+  <a class="card" href="glossaire.html">
+    <span class="card-num">07</span>
+    <h3><span class="fr">Les mots pour comprendre</span><span class="en">The words you need</span></h3>
+    <p><span class="fr">Eurodollar, LIBOR/SOFR, collatéral, offshore, tokenisation, carry trade et le reste.</span><span class="en">Eurodollar, LIBOR/SOFR, collateral, offshore, tokenization, carry trade and the rest.</span></p>
+  </a>
+  <a class="card" href="sources.html">
+    <span class="card-num">08</span>
+    <h3><span class="fr">Pour aller plus loin</span><span class="en">Going further</span></h3>
+    <p><span class="fr">Les auteurs présentés, les références indépendantes, et la contradiction.</span><span class="en">The featured authors, the independent references, and the opposing view.</span></p>
+  </a>
+</div>
+<div class="start" style="padding-bottom:2rem"><div class="start-inner"><span class="fr">Ce site existe aussi en anglais : utilisez le bouton EN en haut à droite. Votre choix est retenu d'une page à l'autre.</span><span class="en">This site is also available in French: use the FR button at the top right. Your choice is remembered from page to page.</span></div></div>
 <footer>
   <p>
     <span class="fr">Ce site présente des faits documentés et des interprétations attribuées à leurs auteurs. Il ne constitue ni un conseil financier, ni une adhésion aux thèses exposées. Les étiquettes Fait / Interprétation / Débattu reflètent le jugement éditorial du site et peuvent être discutées.</span>
@@ -803,12 +105,11 @@
   </p>
 </footer>
 <script>
-function setLang(l){
-  document.body.className='lang-'+l;
-  document.documentElement.lang=l;
-  document.getElementById('btn-fr').classList.toggle('active',l==='fr');
-  document.getElementById('btn-en').classList.toggle('active',l==='en');
-}
+/* Old one-page anchors keep working: send them to their new page. */
+(function(){var m={demarche:'demarche',histoire:'histoire',forces:'forces',grilles:'grilles',
+chroniques:'chroniques',boussole:'garde-fous',glossaire:'glossaire',sources:'sources'};
+var h=(location.hash||'').replace('#','');if(m[h])location.replace(m[h]+'.html');})();
 </script>
+<script src="site.js" defer></script>
 </body>
 </html>
