@@ -247,3 +247,23 @@ a.card p{margin:0;font-size:.9rem;color:var(--ink-soft)}
 @media(prefers-reduced-motion:reduce){
   nav{transition:none}
 }
+
+/* ---- homepage synthesis ---- */
+.synthese{max-width:880px;margin:0 auto;padding:2.5rem 1.5rem 0}
+.synthese > h2{font-size:1.5rem;margin-bottom:.4rem}
+.synthese > .lede{color:var(--ink-soft);font-style:italic;margin-bottom:1.6rem;max-width:640px}
+.syn-block{
+  background:var(--card);border:1px solid var(--line);border-radius:8px;
+  padding:1.2rem 1.4rem;margin-bottom:1rem;
+}
+.syn-block h3{
+  margin:0 0 .5rem;font-size:.74rem;font-family:var(--sans);font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--gold);
+}
+.syn-block.fact h3{color:var(--fact)}
+.syn-block.caveat{background:var(--paper-deep);border-left:3px solid var(--accent);border-radius:0 8px 8px 0}
+.syn-block.caveat h3{color:var(--accent)}
+.syn-block p{font-size:.97rem;margin:0}
+.syn-block p + p{margin-top:.7rem}
+.explore-head{max-width:880px;margin:0 auto;padding:2.2rem 1.5rem 0}
+.explore-head h2{font-size:1.35rem}
