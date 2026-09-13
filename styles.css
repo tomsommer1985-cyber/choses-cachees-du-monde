@@ -310,3 +310,5 @@ figure.illus figcaption{
   figure.illus img{border-radius:0;border-left:none;border-right:none}
   figure.illus figcaption{padding:0 1.35rem}
 }
+figure.illus.portrait img{max-width:520px;margin:0 auto}
+@media(max-width:640px){figure.illus.portrait img{max-width:100%}}
