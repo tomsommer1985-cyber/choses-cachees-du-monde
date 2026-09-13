@@ -267,3 +267,34 @@ a.card p{margin:0;font-size:.9rem;color:var(--ink-soft)}
 .syn-block p + p{margin-top:.7rem}
 .explore-head{max-width:880px;margin:0 auto;padding:2.2rem 1.5rem 0}
 .explore-head h2{font-size:1.35rem}
+
+/* ---- inline diagrams ---- */
+figure.diagram{
+  margin:1.6rem 0 0;background:var(--paper-deep);border:1px solid var(--line);
+  border-radius:8px;padding:1.3rem 1.1rem 1rem;
+}
+figure.diagram svg{display:block;margin:0 auto;width:100%;max-width:400px;height:auto}
+figure.diagram figcaption{
+  margin-top:1rem;padding-top:.8rem;border-top:1px solid var(--line);
+  font-family:var(--sans);font-size:.82rem;color:var(--ink-soft);line-height:1.5;
+}
+/* on a phone the figure reclaims the card's side padding so the drawing stays legible */
+@media(max-width:640px){
+  figure.diagram{margin-left:-1.35rem;margin-right:-1.35rem;padding:1rem .5rem .9rem;border-radius:0}
+  figure.diagram figcaption{padding-left:.6rem;padding-right:.6rem}
+}
+.diag text{font-family:var(--sans)}
+.diag-box{fill:var(--card);stroke:var(--line);stroke-width:1}
+.diag-box-end{fill:var(--paper);stroke:var(--accent);stroke-width:1.5}
+.diag-title{fill:var(--ink);font-size:12.5px;font-weight:700}
+.diag-detail{fill:var(--ink-soft);font-size:10.5px}
+.diag-title-red{fill:var(--accent);font-size:12.5px;font-weight:700}
+.diag-detail-red{fill:var(--accent-soft);font-size:10.5px}
+.diag-line{stroke:var(--ink-soft);stroke-width:1.4;fill:none}
+.diag-label{fill:var(--ink-soft);font-size:10.5px;font-style:italic}
+.diag-head{fill:var(--ink-soft)}
+.diag-cut{stroke:var(--accent);stroke-width:1.6;fill:none}
+.diag-cut-dash{stroke:var(--accent);stroke-width:1.6;fill:none;stroke-dasharray:4 4}
+.diag-cut-text{fill:var(--accent);font-size:10.5px;font-weight:700}
+.diag-head-red{fill:var(--accent)}
+.diag-hyp{fill:var(--gold);font-size:10px;font-style:italic}
