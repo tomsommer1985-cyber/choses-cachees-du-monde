@@ -382,3 +382,12 @@ article.chron figure.illus{margin-top:.4rem}
   .chron-card{padding:1rem 1.1rem .9rem}
   .chron-card .card-foot{flex-direction:column;align-items:flex-start}
 }
+
+/* ---- chronicles: explanatory sidebars ---- */
+article.chron .concept{
+  background:var(--card);border:1px solid var(--line);border-left:4px solid var(--fact);
+  border-radius:8px;padding:.9rem 1.1rem;margin:1.2rem 0 1.5rem;font-size:.92rem
+}
+article.chron .concept h4{font-family:var(--sans);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--fact);margin:0 0 .45rem}
+article.chron .concept p{margin:0 0 .6rem;font-size:.92rem;line-height:1.6}
+article.chron .concept p:last-child{margin-bottom:0}
