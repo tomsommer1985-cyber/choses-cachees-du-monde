@@ -395,17 +395,11 @@ article.chron .concept p:last-child{margin-bottom:0}
 /* ---- site banner (engraved frieze) ---- */
 .hero-art{position:relative;max-width:1400px;margin:0 auto;background:var(--paper)}
 .hero-art img{display:block;width:100%;height:auto}
-.hero-art::after{content:"";position:absolute;left:0;right:0;bottom:0;height:7%;
-  background:linear-gradient(to bottom,rgba(247,243,234,0),rgba(247,243,234,.85));pointer-events:none}
 .hero-art{border-bottom:1px solid var(--line)}
 header.hero{padding-top:2.2rem}
-.band{position:relative;max-width:1400px;margin:0 auto;height:210px;overflow:hidden;background:var(--paper)}
-.band img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 50%}
-.band::after{content:"";position:absolute;left:0;right:0;bottom:0;height:22%;
-  background:linear-gradient(to bottom,rgba(247,243,234,0),rgba(247,243,234,.8));pointer-events:none}
-.band{border-bottom:1px solid var(--line)}
+.band{max-width:1400px;margin:0 auto;background:var(--paper);border-bottom:1px solid var(--line)}
+.band img{display:block;width:100%;height:auto}
 .band + .page-intro{padding-top:1.2rem}
 @media(max-width:640px){
-  .band{height:112px}
   header.hero{padding-top:1.4rem}
 }
